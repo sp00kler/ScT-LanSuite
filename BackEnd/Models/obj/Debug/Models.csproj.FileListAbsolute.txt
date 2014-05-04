@@ -41,19 +41,3 @@ C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Mod
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Models\bin\Debug\Resources.dll
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Models\bin\Debug\Resources.pdb
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Models.dll.config
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Models.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Models.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\EntityFramework.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Resources.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Resources.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\EntityFramework.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\obj\Debug\Models.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Models\obj\Debug\Models.pdb

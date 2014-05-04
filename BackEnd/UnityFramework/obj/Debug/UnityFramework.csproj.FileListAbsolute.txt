@@ -55,22 +55,3 @@ C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Uni
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\UnityFramework\obj\Debug\UnityFramework.csprojResolveAssemblyReference.cache
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\UnityFramework\obj\Debug\UnityFramework.dll
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\UnityFramework\obj\Debug\UnityFramework.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\UnityFramework.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\UnityFramework.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Dal.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\EntityFramework.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Models.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Repository.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Dal.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Models.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Repository.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\EntityFramework.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\obj\Debug\UnityFramework.csprojResolveAssemblyReference.cache
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\obj\Debug\UnityFramework.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\UnityFramework\obj\Debug\UnityFramework.pdb

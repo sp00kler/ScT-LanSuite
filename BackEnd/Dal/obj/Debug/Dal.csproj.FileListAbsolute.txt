@@ -65,27 +65,3 @@ C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Dal
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Dal\obj\Debug\Dal.csproj.GenerateResource.Cache
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Dal\obj\Debug\Dal.dll
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Dal\obj\Debug\Dal.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Dal.dll.config
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Dal.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Dal.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\EntityFramework.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Models.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Models.pdb
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\EntityFramework.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\obj\Debug\Dal.csprojResolveAssemblyReference.cache
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\obj\Debug\Dal.Migrations.Init.resources
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\obj\Debug\Dal.Migrations.SeatingContentLength.resources
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\obj\Debug\Dal.Migrations.EditionPlace.resources
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\obj\Debug\Dal.Migrations.SeatingContentRequired.resources
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\obj\Debug\Dal.Migrations.pageishome.resources
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\obj\Debug\Dal.csproj.GenerateResource.Cache
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\obj\Debug\Dal.dll
-C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Dal\obj\Debug\Dal.pdb

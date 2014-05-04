@@ -23,7 +23,7 @@
             <div class="editor-field">
                 @Html.EditorFor(model => model.Seats)
                 @Html.ValidationMessageFor(model => model.Seats)
-              
+
             </div>
         </div>
         <div id="seatings">
@@ -106,8 +106,8 @@
                         });
                         $(".lanBlock").click(function () {
                             var colorIndex = colors.indexOf($(this).css("background-color"));
-                            
-                            if ((colorIndex + 1) > (colors.length -1)) {
+
+                            if ((colorIndex + 1) > (colors.length - 1)) {
                                 $(this).css("background-color", colors[0]);
                             }
                             else {
@@ -122,6 +122,7 @@
                                     $("#seatingContainer .drag").addClass("item-" + counts[0]);
                                     $("#seatingContainer .lanTableContainer").addClass("table-" + counts[0]);
                                     $("#seatingContainer .lanTableContainer").addClass("lanTableCont");
+                                    $("#seatingContainer .lanBlockContainer").addClass("lanBlockCont");
                                     $("#seatingContainer .lanBlockContainer").addClass("block-" + counts[0]);
                                     $("#seatingContainer .resize").addClass("size-" + counts[0]);
 
@@ -170,27 +171,33 @@
 
                         $("#seatingContainer > div").each(function () {
                             make_draggable($(this));
-                           
-                            
-                            if ($(this).hasClass("lanTableCont")) {
+                            if ($(this).hasClass("lanBlockCont")) {
+                                var divMain = $("." + $(this).attr('class').split(' ')[0] + " > div");
+                                divMain.resizable({
+                                    handles: "all", autoHide: true, grid: 20,
+                                    stop: function () {
+                                        saveSeatingTable();
+                                    }
+                                });
+                            }
 
-                           
-                            //make_resizable($("." + $(this).attr('class').split(' ')[0] + " > table"));
-                            var tableMain = $("." + $(this).attr('class').split(' ')[0] + " > table");
-                            var childTables = "." + tableMain.attr('class').split(' ')[1] + " > tbody > tr > td > table";
-                            $(this).dblclick(function () {
-                                $(this).remove();
-                                saveSeatingTable();
-                            });
-                            tableMain.resizable({
-                                handles: "all", autoHide: true, grid: 20, alsoResize: childTables,
-                                stop: function () {
+                            if ($(this).hasClass("lanTableCont")) {
+                                //make_resizable($("." + $(this).attr('class').split(' ')[0] + " > table"));
+                                var tableMain = $("." + $(this).attr('class').split(' ')[0] + " > table");
+                                var childTables = "." + tableMain.attr('class').split(' ')[1] + " > tbody > tr > td > table";
+                                $(this).dblclick(function () {
+                                    $(this).remove();
                                     saveSeatingTable();
-                                }
-                            });
+                                });
+                                tableMain.resizable({
+                                    handles: "all", autoHide: true, grid: 20, alsoResize: childTables,
+                                    stop: function () {
+                                        saveSeatingTable();
+                                    }
+                                });
                             }
                             counts[0]++;
-                            
+
                         });
                     });
                 </script>
@@ -207,7 +214,7 @@
     $(function () {
         if ($("#Seating_Content").val() != "") {
             $("#seatingContainer").html($("#Seating_Content").val());
-            $("#seatingScript").html($("#seatingScript").html());      
+            $("#seatingScript").html($("#seatingScript").html());
         }
     });
 </script>
