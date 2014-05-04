@@ -1,0 +1,163 @@
+﻿@model Models.ClanInvitationsViewModel
+
+<div id="myClan">
+    @if (Model.Clan == null)
+    {
+        using (Html.BeginForm("Clans", "Account", FormMethod.Post, new { id = "CreateForm" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Clan.Title, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Clan.Title)
+                    @Html.ValidationMessageFor(model => model.Clan.Title)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Clan.Tag, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Clan.Tag)
+                    @Html.ValidationMessageFor(model => model.Clan.Tag)
+                </div>
+            </div>      
+            <div class="form-group">
+                <input type="submit" value="Create Clan" class="btn btn-default" />
+            </div>
+        }
+    }
+    @if (Model.Clan != null && !Model.isLeader)
+    {
+        <div>You are currently a clanmember of: @Model.Clan.Title</div>
+        <h4>Clan Members</h4>
+        <div class="spacer"></div>
+        <table class="ui-widget ui-widget-content">
+            <tr class="ui-widget-header">
+                <td>Clan Member</td>
+            </tr>
+            @foreach (var item in Model.Clan.Users)
+            {
+            <tr>
+                <td>@item.UserName</td>
+            </tr>
+            }
+         </table>
+    }
+    @if (Model.Clan != null && Model.isLeader)
+    {
+         <div id="manageRight">
+             <h4>Send Invite</h4>
+             <div class="spacer"></div>
+            @using (Html.BeginForm("SendClanInvite", "Account", FormMethod.Post, new { id = "CreateForm" }))
+            {
+            <div class="form-group">
+                @Html.Label("User","Invite user")
+                <div class="col-md-10">
+                    @Html.Hidden("Clan", Model.Clan.ID)
+                    @Html.TextBox("User")
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Invite user" class="btn btn-default" />
+            </div>
+            }
+        </div>
+        <div id="manageLeft">
+        <h4>Clan Members</h4>
+        <div class="spacer"></div>
+        <table class="ui-widget ui-widget-content">
+            <tr class="ui-widget-header">
+                <td>Clan Member</td>
+                <td></td>
+            </tr>
+            @foreach (var item in Model.Clan.Users)
+            {
+            <tr>
+                <td>@item.UserName</td>
+                <td>
+                    @using (Html.BeginForm("KickClanMember", "Account", FormMethod.Post, new { id = "kickForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("userId", item.Id);
+                        @Html.Hidden("clanId", item.ClanID);
+                        <button class="Delete ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">
+                            <span class="ui-button-icon-primary ui-icon ui-icon-trash"></span>
+                            <span class="ui-button-text">Delete</span>
+                        </button>
+                    }
+                </td>
+            </tr>
+            }
+        </table>
+        </div>
+                <script>
+                    $(function () {
+                        $("#User").autocomplete({
+                            source: function (request, response) {
+                                $.ajax({
+                                    url: "/Account/GetUsers",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: { term: request.term },
+                                    success: function (data) {
+                                        response($.map(data, function (item) {
+                                            return { label: item, value: item };
+                                        }))
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+    }
+    
+</div>
+<div id="invitations">
+@if (Model.ClanInvitations != null && !Model.isInClan)
+{
+    <table class="ui-widget ui-widget-content">
+        <tr class="ui-widget-header">
+            <td>Clan</td>
+            <td>Leader</td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model.ClanInvitations)
+        {
+		 <tr>
+             <td>@item.Clan.Title</td>
+             <td>@item.Clan.Leader.UserName</td>
+             <td>
+                 @using (Html.BeginForm("AcceptClanInvite", "Account"))
+                 {
+                     @Html.AntiForgeryToken()
+                     @Html.Hidden("ClanInvitationID", item.ID)
+                     <button class="Accept ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">
+                        <span class="ui-button-icon-primary ui-icon ui-icon-check"></span>
+                        <span class="ui-button-text">Accept</span>
+                     </button>
+                 }
+                 @using (Html.BeginForm("DeclineClanInvite", "Account"))
+                 {
+                     @Html.AntiForgeryToken()
+                     @Html.Hidden("ClanInvitationID", item.ID)
+                     <button class="Reject ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">
+                        <span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span>
+                        <span class="ui-button-text">Decline</span>
+                     </button>
+                 }
+
+             </td>
+         </tr>
+        }
+    </table>
+}
+</div>
+
+<script>
+    $(function () {
+        $(".Accept").click(function () {
+            $(this).parent().submit();
+        });
+        $(".Decline").click(function () {
+            $(this).parent().submit();
+        });
+    });
+</script>

@@ -1,0 +1,69 @@
+﻿// Seating Plan
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Seating
+-------
+Id (string/guid)
+Active (bool)
+Edition (link/single)
+ItemPositions (link/list)
+
+ItemPosition
+------------
+Id (string/guid)
+Name (string/divId)
+Content (string/html)
+Top (int/double)
+Left (int/double)
+Edition (link/single)
+
+ClanSeating
+-----------
+Id (string/guid)
+Clan (link/single)
+Edition (link/single)
+TableName (string/divId)
+SeatName (string/divId)
+
+Items (prefilled in db)
+-----
+Id (string/guid)
+Name (string)
+Content (string/html)
+
+code
+-----
+
+make gametables of 24 seats in html tables (tableh-1/tablev-1) give it seatings (seat-1)
+
+get tables count from item names
+
+make page which loads seating plan and appends dropdowns on td(seat-1) click give list of all clans registered for this edition that are not yet given a place on the seating plan
+
+some custom item where they can choose the color, name and size. (need modification for model in itemPosition (colorfield, text)) check chess project for dropdowns
+
+// Clan Management
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Check Model clan/applicationuser links
+
+
+// CMS
+¯¯¯¯¯¯¯
+Get your lazy ass to testing this stuff........
+
+bugs: 
+-----
+Cannot make new news page as crew => not worth fixing check account
+
+
+
+// Account
+¯¯¯¯¯¯¯¯¯¯¯
+Add Claim auth system (good for 16+ compo's or 18+ compo's)
+Get a rights system instead of role system using the claims
+
+
+//Database
+¯¯¯¯¯¯¯¯¯¯¯
+http://www.brightstardb.com/
+
+nosql with codefirst model make 2 directories mssql backend / brightstar backend test which is faster....

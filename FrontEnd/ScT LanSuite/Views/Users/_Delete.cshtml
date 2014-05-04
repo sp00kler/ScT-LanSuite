@@ -1,0 +1,11 @@
+﻿@model Models.EditUserViewModel
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "DeleteForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.UserName)
+    <div style="display:block;">@Resources.Lang.DeleteText "@Model.UserName".</div>
+    <div style="display:block;">@Resources.Lang.WantContinue</div>
+}
+
+

@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Models.Edition>
+@{
+    var i = 1;
+}
+<table id="tblCms" class="ui-widget ui-widget-content">
+    <tr class="ui-widget-header">
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seats)
+        </th>
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.isActivated)
+            </th>
+        }
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (i == 2)
+        {
+        <tr id="tblAlt">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td id="tblCheckBox">
+                @Html.DisplayFor(modelItem => item.Seats)
+            </td>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <td id="tblCheckBox">
+                    @using (Html.BeginForm("ChangeActiveState", "Edition"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.CheckBoxFor(modelItem => item.isActivated, new { id = item.ID })
+                        @Html.Hidden("EditionID", item.ID)
+                    }
+                </td>
+            }
+            <td>
+                <button class="Edit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.ID">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-wrench"></span>
+                    <span class="ui-button-text">Edit</span>
+                </button>
+                <button class="Delete ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.ID">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-trash"></span>
+                    <span class="ui-button-text">Delete</span>
+                </button>
+            </td>
+        </tr>
+            i = 1;
+        }
+        else
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td id="tblCheckBox">
+                @Html.DisplayFor(modelItem => item.Seats)
+            </td>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <td id="tblCheckBox">
+                    @using (Html.BeginForm("ChangeActiveState", "Edition"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.CheckBoxFor(modelItem => item.isActivated, new { id = item.ID })
+                        @Html.Hidden("EditionID", item.ID)
+                    }
+                </td>
+            }
+            <td>
+                <button class="Edit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.ID">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-wrench"></span>
+                    <span class="ui-button-text">Edit</span>
+                </button>
+                <button class="Delete ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.ID">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-trash"></span>
+                    <span class="ui-button-text">Delete</span>
+                </button>
+            </td>
+        </tr>
+            i++;
+        }
+    }
+</table>
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".Edit , .Delete").hover(
+            function () {
+                $(this).addClass("ui-state-hover");
+            },
+            function () {
+                $(this).removeClass("ui-state-hover");
+            }
+        );
+
+        $(".Edit").click(function () {
+            $("#Edit-dialog").load('@Url.Action("Edit", "Edition")?id=' + $(this).attr("id"), function () {
+                $("#Edit-dialog").dialog({ title: "Edit Page" });
+                $("#Edit-dialog").dialog("open");
+            });
+        });
+
+        $(".Delete").click(function () {
+            var deleteid = $(this).attr("id");
+            $("#Delete-dialog").load('@Url.Action("Delete", "Edition")?id=' + deleteid, function () {
+                $("#Delete-dialog").dialog({
+                    title: "Confirm Delete",
+                    buttons: {
+                        "Delete": function () {
+                            $.post('@Url.Action("ConfirmDelete", "Edition")', $("#DeleteForm").serialize(), function (data) {
+                                if (data == "Success") {
+                                    setTimeout(function () { $("#Edition-table").load('@Url.Action("ReloadEditionTable", "Edition")'); }, 500);
+                                }
+                            });
+                            $(this).dialog("close");
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $("#Delete-dialog").dialog("open");
+            });
+        });
+
+        $("[name$='isActivated']").change(function () {
+            $.post('@Url.Action("ChangeActiveState", "Edition")', $(this).parent().serialize(), function (data) {
+                if (data == "Success") {
+                    setTimeout(function () { $("#Edition-table").load('@Url.Action("ReloadEditionTable", "Edition")'); }, 500);
+                        setTimeout(function () { $("section#menu").load('@Url.Action("ReloadMenu", "Home")'); }, 500);
+                    }
+                });
+        });
+    });
+</script>
+

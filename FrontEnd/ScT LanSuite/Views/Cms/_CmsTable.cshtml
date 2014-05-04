@@ -1,0 +1,277 @@
+﻿@model IEnumerable<Models.Page>
+@{
+    var i = 1;
+    var f = 0;
+    var count = Model.Count();
+}
+<table id="tblCms" class="ui-widget ui-widget-content">
+    <tr class="ui-widget-header">
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isNews)
+        </th>
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.isActivated)
+            </th>
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.Place)
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (i == 2)
+        {
+        <tr id="tblAlt">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td id="tblCheckBox">
+                @Html.DisplayFor(modelItem => item.isNews)
+            </td>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <td id="tblCheckBox">
+                @using (Html.BeginForm("ChangeActiveState", "Cms"))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.CheckBoxFor(modelItem => item.isActivated, new { id = item.ID })
+                    @Html.Hidden("PageID", item.ID)
+                }
+                </td>
+            }
+            <td>
+                @if (count != 1)
+                {
+                    if (f == 0)
+                    {
+                        <div id="sequencefirst">
+                        @using (Html.BeginForm("PlaceDown","Cms"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("PageID", item.ID)
+                            <button class="down ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"></span>
+                            </button>      
+                        }
+                        </div>
+                    }
+                    else if (f == (count - 1))
+                    {
+                        <div id="sequencelast">
+                        @using (Html.BeginForm("PlaceUp","Cms"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("PageID", item.ID)
+                            <button class="up ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-n"></span>
+                            </button>
+                            
+                        }
+                        </div>
+                    }
+                    else
+                    {
+                    <div id="sequence">
+                        @using (Html.BeginForm("PlaceUp", "Cms"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("PageID", item.ID)
+                            <button class="up ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-n"></span>
+                            </button>
+                        }
+                        @using (Html.BeginForm("PlaceDown", "Cms"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("PageID", item.ID)
+                            <button class="down ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"></span>
+                            </button>
+                        }
+                    </div>
+                    }
+
+                }
+            </td>
+            <td>
+                <button class="Edit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.ID">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-wrench"></span>
+                    <span class="ui-button-text">Edit</span>
+                </button>
+                <button class="Delete ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.ID">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-trash"></span>
+                    <span class="ui-button-text">Delete</span>
+                </button>
+            </td>
+        </tr>
+                i = 1;
+        }
+        else
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td id="tblCheckBox">
+                @Html.DisplayFor(modelItem => item.isNews)
+            </td>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <td id="tblCheckBox">
+                @using (Html.BeginForm("ChangeActiveState", "Cms"))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.CheckBoxFor(modelItem => item.isActivated, new { id = item.ID })
+                    @Html.Hidden("PageID", item.ID)
+                }
+                </td>
+            }
+            <td>
+                @if (count != 1)
+                {
+                    if (f == 0)
+                    {                           
+                        <div id="sequencefirst">
+                        @using (Html.BeginForm("PlaceDown","Cms"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("PageID", item.ID)
+                           <button class="down ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"></span>
+                           </button>
+                        }
+                        </div>
+                    }
+                    else if (f == (count - 1))
+                    {
+                        <div id="sequencelast">
+                        @using (Html.BeginForm("PlaceUp","Cms"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("PageID", item.ID)
+                            <button class="up ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-n"></span>
+                            </button>
+                        }
+                        </div>
+                    }
+                    else
+                    {
+                    <div id="sequence">
+                        @using (Html.BeginForm("PlaceUp","Cms"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("PageID", item.ID)
+                            <button class="up ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-n"></span>
+                            </button>
+                        }
+                        @using (Html.BeginForm("PlaceDown","Cms"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("PageID", item.ID)
+                            <button class="down ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                                <span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"></span>
+                            </button>
+                        }
+                    </div>
+                    }
+
+                }
+            </td>
+            <td>
+                <button class="Edit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.ID">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-wrench"></span>
+                    <span class="ui-button-text">Edit</span>
+                </button>
+                <button class="Delete ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.ID">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-trash"></span>
+                    <span class="ui-button-text">Delete</span>
+                </button>
+            </td>
+        </tr>
+                i++;
+        }
+        f++;
+    }
+</table>
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".Edit , .Delete , .up , .down").hover(
+            function () {
+                $(this).addClass("ui-state-hover");
+            },
+            function () {
+                $(this).removeClass("ui-state-hover");
+            }
+        );
+
+        $(".Edit").click(function () {
+            $("#Edit-dialog").load('@Url.Action("Edit", "Cms")?id=' + $(this).attr("id"), function () {
+                $("#Edit-dialog").dialog({ title: "Edit Page" });
+                $("#Edit-dialog").dialog("open");
+            });
+        });
+
+        $(".Delete").click(function () {
+            var deleteid = $(this).attr("id");
+            $("#Delete-dialog").load('@Url.Action("Delete", "Cms")?id=' + deleteid, function () {
+                $("#Delete-dialog").dialog({
+                    title: "Confirm Delete",
+                    buttons: {
+                        "Delete": function () {
+                            $.post('@Url.Action("ConfirmDelete", "Cms")', $("#DeleteForm").serialize(), function (data) {
+                                if (data == "Success") {
+                                    setTimeout(function () { $("#Cms-table").load('@Url.Action("ReloadCmsTable", "Cms")'); }, 500);
+                                }
+                            });
+                            $(this).dialog("close");
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $("#Delete-dialog").dialog("open");
+            });
+        });
+
+        $("[name$='isActivated']").change(function () {
+                $.post('@Url.Action("ChangeActiveState", "Cms")', $(this).parent().serialize(), function (data) {
+                    if (data == "Success") {
+                        setTimeout(function () { $("#Cms-table").load('@Url.Action("ReloadCmsTable", "Cms")'); }, 500);
+                        setTimeout(function () { $("section#menu").load('@Url.Action("ReloadMenu", "Home")'); }, 500);
+                    }
+            });
+        });
+
+        $(".up").click(function (e) {
+            e.preventDefault();
+            $.post('@Url.Action("PlaceUp", "Cms")', $(this).parent().serialize(), function (data) {
+                if (data == "Success") {
+                    setTimeout(function () { $("#Cms-table").load('@Url.Action("ReloadCmsTable", "Cms")'); }, 500);
+                    setTimeout(function () { $("section#menu").load('@Url.Action("ReloadMenu", "Home")'); }, 500);
+                }
+            });
+        });
+        $(".down").click(function (e) {
+            e.preventDefault();
+            $.post('@Url.Action("PlaceDown", "Cms")', $(this).parent().serialize(), function (data) {
+                if (data == "Success") {
+                    setTimeout(function () { $("#Cms-table").load('@Url.Action("ReloadCmsTable", "Cms")'); }, 500);
+                    setTimeout(function () { $("section#menu").load('@Url.Action("ReloadMenu", "Home")'); }, 500);
+                }
+            });
+        });
+
+    });
+</script>

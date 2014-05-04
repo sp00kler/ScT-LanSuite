@@ -1,0 +1,9 @@
+﻿@model Models.Edition
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "DeleteForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID)
+    <div style="display:block;">You are about to delete "@Model.Title".</div>
+    <div style="display:block;">Do you want to continue?</div>
+}
+

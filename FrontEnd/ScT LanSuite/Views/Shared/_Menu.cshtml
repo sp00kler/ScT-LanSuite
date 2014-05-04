@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Models.Page>
+<nav>
+    <ul id="menu">
+        @foreach (var item in Model)
+        {
+            <li>@Html.ActionLink(item.Title.ToString(), "Index", "Home", new { id = item.ID.ToString() }, new { })</li>
+        }
+        @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Crew")))
+        {
+            <li>@Html.ActionLink("Cms", "Index", "Cms", new { }, new { })</li>
+            if (User.IsInRole("Admin"))
+            {
+                 <li>@Html.ActionLink("Users", "Index", "Users", new { }, new { })</li>
+                 <li>@Html.ActionLink("Editions", "Index", "Edition", new { }, new { })</li>
+            }
+
+        }
+    </ul>
+</nav>

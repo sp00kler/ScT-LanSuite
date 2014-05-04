@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lan Design</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/signalR")
+    <script src="/signalr/hubs" type="text/javascript"></script>
+
+    @if (Session["ChatUser"] != null && this.User.Identity.IsAuthenticated)
+    {
+        ChatJs.Net.ChatUser chatUser = (ChatJs.Net.ChatUser)Session["ChatUser"];
+        <script type="text/javascript">
+    $(function () {
+        $.chat({
+            // your user information
+            user: {
+                Id: '@chatUser.Id',
+                Name: '@chatUser.Name',
+                ProfilePictureUrl: '@Html.Raw(chatUser.ProfilePictureUrl)'
+            },
+            // text displayed when the other user is typing
+            typingText: ' is typing...',
+            // the title for the user's list window
+            titleText: 'ScT-Lansuite Chat',
+            // text displayed when there's no other users in the room
+            emptyRoomText: "There's no one around here.",
+            // the adapter you are using
+            adapter: new SignalRAdapter() // new LongPollingAdapter()
+        });
+    });
+        </script>
+    }
+</head>
+<body>
+    <div id="header">
+        <div id="headerLogin">
+            <section id="login">
+                @Html.Partial("_LoginPartial")
+            </section>
+        </div>
+        <div id="headerMenu">
+            <section id="menu">   
+                <div id="Loader"></div>   
+            </section>
+        </div>
+    </div>
+    <div id="body">
+        <div id="bodyLeft"></div>
+        <div id="bodyCenter">
+            <div id="bodySponsor">
+                <img class="sponsorHorizontal" src="~/Images/testsponsor.jpg" />
+            </div>
+            <div id="bodyInfo">
+                <div id="lanStats">
+                    <div id="Loader"></div>
+                </div>
+                
+            </div>
+            @RenderBody()
+        </div>
+        <div id="bodyRight"></div>
+    </div>
+    <script>
+        $(function () {
+            $("section#menu").load('@Url.Action("ReloadMenu","Home")');
+            $("#lanStats").load('@Url.Action("LoadEdition", "Home")');
+           
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript" src="https://s3.amazonaws.com/appfail-us/appfail.reporting.min.js?slug=84811308-e0ca-46c2-85c4-5a54608399c8"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿@model Models.SelectUserRolesViewModel
+
+<fieldset>
+    @using (Html.BeginForm("UserRoles", "Users", FormMethod.Post, new { id="EditForm", encType = "multipart/form-data", name = "myform" }))
+    {
+        @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.UserName)
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <th>
+                        @Resources.Lang.Select
+                    </th>
+                    <th>
+                        @Resources.Lang.Role
+                    </th>
+                    <th>
+                        @Resources.Lang.Description
+                    </th>
+                </tr>
+
+                @Html.EditorFor(model => model.Roles)
+            </table>
+    }
+</fieldset>

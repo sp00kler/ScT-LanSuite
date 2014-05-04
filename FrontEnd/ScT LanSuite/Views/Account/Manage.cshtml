@@ -1,0 +1,60 @@
+﻿@using Models;
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Manage Account";
+}
+@Styles.Render("~/Content/themes/base/css")
+
+
+<div id="bodyContent">
+    <h2>@ViewBag.Title.</h2>
+    <div class="spacer"></div>
+    <div id="statusMessage">
+        <p class="text-success">@ViewBag.StatusMessage</p>
+    </div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tab1">Profile</a></li>
+            <li><a href="#tab2">Clan</a></li>
+        </ul>
+        <div id="tab1">
+            <div id="manageRight">
+                <section id="changePassword">
+                    @if (ViewBag.HasLocalPassword)
+                    {
+                        @Html.Partial("_ChangePasswordPartial")
+                    }
+                    else
+                    {
+                        @Html.Partial("_SetPasswordPartial")
+                    }
+                </section>
+            </div>
+            <div id="manageLeft">
+                <section id="editPersonalInfo">
+                    @Html.Action("Edit", "Account", new { id = User.Identity.Name })
+                </section>
+            </div>
+            <section id="externalLogins">
+                @Html.Action("RemoveAccountList")
+                @Html.Partial("_ExternalLoginsListPartial", new { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+        <div id="tab2">
+            <section id="clanManagement">
+                @Html.Action("Clans", "Account")
+            </section>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+<script>
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+}

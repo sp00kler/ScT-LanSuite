@@ -1,0 +1,48 @@
+﻿@model Models.Edition
+<div class="window">
+    <div class="windowTitle">
+        Upcomming
+    </div>
+    <div class="windowContent">
+        <div class="windowPadding">
+                Title: @Model.Title
+            <br />
+                Seats: @Model.Seats
+        </div>
+        <div>
+            <button class="Seating ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="showSeating">
+                <span class="ui-button-icon-primary ui-icon ui-icon-info"></span>
+                <span class="ui-button-text">Show Seating</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div id="seating-dialog">
+    <div id="Loader"></div>
+</div>
+
+<script>
+    $(function () {
+
+        $("#seating-dialog").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 900,
+            modal: true,
+            title: "Seating",
+            buttons: {
+                "Close": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+
+        $("#showSeating").click(function () {
+            $("#seating-dialog").load('@Url.Action("GetSeating","Home")?id=@Model.ID');
+            $("#seating-dialog").dialog("open");
+
+        });
+
+    });
+</script>

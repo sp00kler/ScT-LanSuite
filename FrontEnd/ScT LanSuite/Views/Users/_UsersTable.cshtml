@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Models.EditUserViewModel>
+<table id="tblUsers" class="ui-widget ui-widget-content">
+    <tr class="ui-widget-header">
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <button class="Edit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.UserName">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-wrench"></span>
+                    <span class="ui-button-text">@Resources.Lang.Edit</span>
+                </button>
+                <button class="Roles ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.UserName">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-lightbulb"></span>
+                    <span class="ui-button-text">@Resources.Lang.Roles</span>
+                </button>
+                <button class="Delete ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="@item.UserName">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-trash"></span>
+                    <span class="ui-button-text">@Resources.Lang.Delete</span>
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".Edit , .Roles , .Delete").hover(
+            function () {
+                $(this).addClass("ui-state-hover");
+            },
+            function () {
+                $(this).removeClass("ui-state-hover");
+            }
+        );
+
+        $(".Edit").click(function () {
+            $("#Edit-dialog").load('@Url.Action("Edit", "Users")?id=' + $(this).attr("id"), function () {
+                $("#Edit-dialog").dialog({ title: "@Resources.Lang.EditUser" });
+                $("#Edit-dialog").dialog("open");
+            });
+        });
+
+        $(".Roles").click(function () {
+            $("#Roles-dialog").load('@Url.Action("UserRoles", "Users")?id='+ $(this).attr("id"), function () {
+                $("#Roles-dialog").dialog({ title: "@Resources.Lang.SetRoles" });
+                $("#Roles-dialog").dialog("open");
+            });
+        });
+        
+        $(".Delete").click(function () {
+            var deleteid = $(this).attr("id");
+            $("#Delete-dialog").load('@Url.Action("Delete", "Users")?id='+ deleteid, function () {
+                $("#Delete-dialog").dialog({
+                    title: "@Resources.Lang.ConfirmDelete",
+                    buttons: {
+                        "Delete": function () {
+                            $.post('@Url.Action("Delete", "Users")', $("#DeleteForm").serialize(), function (data) {
+                                if (data == "Success") {
+                                    $("#Users-table").load('@Url.Action("ReloadUsersTable", "Users")');
+                                }
+                            });
+                            $(this).dialog("close");
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $("#Delete-dialog").dialog("open");
+            });
+        });
+    });
+</script>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Models.EditUserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Styles.Render("~/Content/themes/base/css")
+<div id="bodyContent">
+    <h2>@Resources.Lang.UserManagementSystem</h2>
+    <div class="spacer"></div>
+    <div id="Users-table">
+        @Html.Partial("_UsersTable", Model)
+    </div>
+    <div id="Edit-dialog">
+        <div id="Loader"></div>
+    </div>
+    <div id="Roles-dialog">
+        <div id="Loader"></div>
+    </div>
+    <div id="Delete-dialog">
+        <div id="Loader"></div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src='@Url.Content("~/Scripts/tiny_mce/tiny_mce.js")'></script>
+    <script src='@Url.Content("~/Scripts/tiny_mce/jquery.tinymce.js")'></script>
+    @Scripts.Render("~/bundles/jqueryui")
+    <script type="text/javascript">
+        $(function () {
+            $("#Roles-dialog").dialog({
+                autoOpen: false,
+                height: 500,
+                width: 700,
+                modal: true,
+                title: "@Resources.Lang.SetRoles",
+                buttons: {
+                    "@Resources.Lang.SetRoles": function () {
+                        $.post('@Url.Action("UserRoles", "Users")', $("#EditForm").serialize(), function (data) {
+                            if (data == "Success") {
+                                setTimeout(function () { $("#Users-table").load('@Url.Action("ReloadUsersTable", "Users")'); }, 500);
+                            }
+                        });
+                        $(this).dialog("close");
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            $("#Edit-dialog").dialog({
+                autoOpen: false,
+                height: 650,
+                width: 700,
+                modal: true,
+                title: "@Resources.Lang.EditUser",
+                buttons: {
+                    "@Resources.Lang.EditUser": function () {
+                        $.post('@Url.Action("Edit", "Users")', $("#EditForm").serialize(), function (data) {
+                            if (data == "Success") {
+                                setTimeout(function () { $("#Users-table").load('@Url.Action("ReloadUsersTable", "Users")'); }, 500);
+                            }
+                        });
+                        $(this).dialog("close");
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                close: function () {
+                    $("#Users-table").load('@Url.Action("ReloadUsersTable", "Users")');
+                }
+            });
+
+            $("#Delete-dialog").dialog({
+                autoOpen: false,
+                height: 200,
+                width: 300,
+                modal: true,
+                title: "@Resources.Lang.ConfirmDelete",
+                close: function () {
+                    setTimeout(function () { $("#Users-table").load('@Url.Action("ReloadUsersTable", "Users")'); }, 500);
+
+                }
+            });
+        });
+    </script>
+}

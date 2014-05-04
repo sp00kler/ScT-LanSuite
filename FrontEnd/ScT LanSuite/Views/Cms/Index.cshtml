@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Models.Page>
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/themes/base/css")
+<div id="bodyContent">
+    <h2>
+        Content Management System
+    </h2>
+    <div class="spacer"></div>
+    <p>
+        <button class="Create ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">
+            <span class="ui-button-icon-primary ui-icon ui-icon-plus"></span>
+            <span class="ui-button-text">Create</span>
+        </button>
+    </p>
+    <div id="Cms-table">
+        @Html.Partial("_CmsTable", Model)
+    </div>
+    <div id="Edit-dialog">
+        <div id="Loader"></div>
+    </div>
+    <div id="Delete-dialog">
+        <div id="Loader"></div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @*  @Scripts.Render("~/bundles/tinymce")*@
+    <script src='@Url.Content("~/Scripts/tiny_mce/tiny_mce.js")'></script>
+    <script src='@Url.Content("~/Scripts/tiny_mce/jquery.tinymce.js")'></script>
+    @Scripts.Render("~/bundles/jqueryui")
+    <script type="text/javascript">
+        $(function () {
+
+            $("#Edit-dialog").dialog({
+                autoOpen: false,
+                height: 650,
+                width: 700,
+                modal: true,
+                title: "Create Page",
+                buttons: {
+                    "Create Page": function () {
+                        $.post('@Url.Action("CreateOrUpdate", "Cms")', $("#CreateForm").serialize(), function (data) {
+                            if (data == "Success") {
+                                setTimeout(function () { $("#Cms-table").load('@Url.Action("ReloadCmsTable", "Cms")'); }, 500);
+                            }
+                        });
+                        $(this).dialog("close");
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                close: function () {
+                    $("#Cms-table").load('@Url.Action("ReloadCmsTable", "Cms")');
+                    setTimeout(function () { $("section#menu").load('@Url.Action("ReloadMenu", "Home")'); }, 500);
+                }
+            });
+
+            $("#Delete-dialog").dialog({
+                autoOpen: false,
+                height: 200,
+                width: 300,
+                modal: true,
+                title: "Confirm Delete",
+                close: function () {
+                    setTimeout(function () { $("#Cms-table").load('@Url.Action("ReloadCmsTable", "Cms")'); }, 500);
+                    setTimeout(function () { $("section#menu").load('@Url.Action("ReloadMenu", "Home")'); }, 500);
+
+                }
+            });
+
+
+
+            $(".Create").click(function () {
+                $("#Edit-dialog").load('@Url.Action("Create", "Cms")', function () {
+                    $("#Edit-dialog").dialog({ title: "Create Page" });
+                    $("#Edit-dialog").dialog("open");
+                });
+            });
+
+            $(".Create").hover(
+            function () {
+                $(this).addClass("ui-state-hover");
+            },
+            function () {
+                $(this).removeClass("ui-state-hover");
+            });
+        });
+    </script>
+}

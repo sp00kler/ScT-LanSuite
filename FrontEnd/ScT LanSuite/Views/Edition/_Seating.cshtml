@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "Seating";
+}
+@Styles.Render("~/Content/themes/base/css")
+<style>
+    #seatingContainer {
+        width: 780px;
+        height: 780px;
+        border: dotted 1px black;
+    }
+
+    .switch {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+        border-spacing: 0px;
+    }
+
+    .lanTable table td {
+        border: 1px solid #000;
+        border-spacing: 1px;
+        min-width: 20px;
+        height: 10px;
+    }
+
+    .lanTable {
+        border-spacing: 0px;
+    }
+</style>
+<div id="bodyContent">
+
+    <div class="lanTableContainer drag">
+        <table class="lanTable resize">
+            <tr>
+                <td>
+                    <table class="tableH-a">
+                        <tr>
+                            <td class="seat-1"></td>
+                            <td class="seat-2"></td>
+                            <td class="seat-3"></td>
+                            <td class="seat-4"></td>
+                            <td class="seat-5"></td>
+                            <td class="seat-6"></td>
+                        </tr>
+                        <tr>
+                            <td class="seat-13"></td>
+                            <td class="seat-14"></td>
+                            <td class="seat-15"></td>
+                            <td class="seat-16"></td>
+                            <td class="seat-17"></td>
+                            <td class="seat-18"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <div class="switch">
+                    </div>
+                </td>
+                <td>
+                    <table class="tableH-b">
+                        <tr>
+                            <td class="seat-7"></td>
+                            <td class="seat-8"></td>
+                            <td class="seat-9"></td>
+                            <td class="seat-10"></td>
+                            <td class="seat-11"></td>
+                            <td class="seat-12"></td>
+                        </tr>
+                        <tr>
+                            <td class="seat-19"></td>
+                            <td class="seat-20"></td>
+                            <td class="seat-21"></td>
+                            <td class="seat-22"></td>
+                            <td class="seat-23"></td>
+                            <td class="seat-24"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div id="seatingContainer"></div>
+</div>
+<script>
+    $(function () {
+        //Make every clone image unique.  
+        var counts = [0];
+        var resizeOpts = {
+            handles: "all", autoHide: true, grid: 20
+        };
+        $(".drag").draggable({
+            helper: "clone",
+            grid: [ 20, 20 ],
+            //Create counter
+            start: function () { counts[0]++; }
+        });
+
+        $("#seatingContainer").droppable({
+            drop: function (e, ui) {
+                if (ui.draggable.hasClass("drag")) {
+                    $(this).append($(ui.helper).clone());
+                    //Pointing to the dragImg class in dropHere and add new class.
+                    $("#seatingContainer .drag").addClass("item-" + counts[0]);
+                    $("#seatingContainer .lanTableContainer").addClass("table-" + counts[0]);
+                    $("#seatingContainer .resize").addClass("size-" + counts[0]);
+
+                    //Remove the current class (ui-draggable and dragImg)
+                    $("#seatingContainer .item-" + counts[0]).removeClass("drag ui-draggable ui-draggable-dragging");
+                    $("#seatingContainer .table-" + counts[0]).removeClass("lanTableContainer");
+                    $("#seatingContainer .size-" + counts[0]).removeClass("resize");
+
+                    $(".item-" + counts[0]).dblclick(function () {
+                        $(this).remove();
+                    });
+                    make_draggable($(".item-" + counts[0]));
+                    var aresize = ".size-" + counts[0] + " table";
+                    var bresize = ", .size-" + counts[0] + " .switch";
+                    $(".size-" + counts[0]).resizable({ handles: "all", autoHide: true, grid: 20, alsoResize: aresize });
+                }
+
+            }
+        });
+
+
+        var zIndex = 0;
+        function make_draggable(elements) {
+            elements.draggable({
+                containment: 'parent',
+                grid: [ 20, 20 ],
+                start: function (e, ui) { ui.helper.css('z-index', ++zIndex); },
+                stop: function (e, ui) {
+                }
+            });
+        }
+
+
+
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+}

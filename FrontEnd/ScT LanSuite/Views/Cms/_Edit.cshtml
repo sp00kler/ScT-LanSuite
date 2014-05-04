@@ -1,0 +1,150 @@
+﻿@model Models.Page
+
+@using (Html.BeginForm("Create", "Cms", FormMethod.Post, new { id = "CreateForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <div id="cmscontent">
+            @Html.HiddenFor(model => model.isActivated)
+            @Html.HiddenFor(model => model.isNew)
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.isNews)
+                </div>
+                <div class="editor-field" style="display:inline;">
+                    @Html.EditorFor(model => model.isNews)
+                    @Html.ValidationMessageFor(model => model.isNews)
+                </div>
+            }
+            else
+            {
+                <div class="editor-field" style="display:inline;">
+                    @Html.CheckBoxFor(model => model.isNews, new { style = "display:none;" })
+                </div>
+            }
+
+            <div id="newsContainer">
+
+                <div class="editor-field addNewsContainer" style="display:none;">
+                    <button id="addNews" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">
+                        <span class="ui-button-icon-primary ui-icon ui-icon-plus"></span>
+                        <span class="ui-button-text">Add more</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="content">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Content)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Content, new { @class = "wysiwyg" })
+                    @Html.ValidationMessageFor(model => model.Content)
+                </div>
+            </div>
+        </div>
+        <div id="news" style="display:none;">
+            <br />
+
+            @foreach (var item in Model.News.OrderByDescending(x => x.Place))
+            {
+                <div class="newsarticles">
+                    <div class="editor-label">
+                        @Html.HiddenFor(model => model.News[Model.News.IndexOf(item)].ID)
+
+                        @Html.HiddenFor(model => model.News[Model.News.IndexOf(item)].Place)
+                        @Html.LabelFor(model => model.News[Model.News.IndexOf(item)].Title)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.News[Model.News.IndexOf(item)].Title)
+                        @Html.ValidationMessageFor(model => model.News[Model.News.IndexOf(item)].Title)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.News[Model.News.IndexOf(item)].Content)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.News[Model.News.IndexOf(item)].Content, new { @class = "wysiwyg" })
+                        @Html.ValidationMessageFor(model => model.News[Model.News.IndexOf(item)].Content)
+                    </div>
+                    <div>
+                        @Html.TextAreaFor(model => model.News[Model.News.IndexOf(item)].Date, new { style = "display:none;" })
+                    </div>
+                </div>
+                <br />
+            }
+
+
+        </div>
+
+    </fieldset>
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.Place)
+}
+
+<script type="text/javascript">
+    $(function () {
+        
+        $("#addNews").hover(
+        function () {
+            $(this).addClass("ui-state-hover");
+        },
+        function () {
+            $(this).removeClass("ui-state-hover");
+        });
+
+        if ($("#isNews:checkbox").is(":checked")) {
+            $("#content").hide();
+            $("#news").show();
+            $(".addNewsContainer").css("display", "inline");
+        }
+        $("#addNews").click(function (e) {
+            e.preventDefault();
+            $(e.currentTarget).closest("form").validate().settings.ignore = "*"
+            $.post('@Url.Action("AddNews", "Cms")', $("#CreateForm").serialize(), function (data) {
+                $("#Edit-dialog").html(data);
+            });
+        });
+
+        $("#isNews:checkbox").change(function () {
+            if ($(this).is(":checked")) {
+                $("#content").hide();
+                $("#news").show();
+                $(".addNewsContainer").css("display", "inline");
+            }
+            else {
+                $("#news").hide();
+                $(".addNewsContainer").css("display", "none");;
+                $("#content").show();
+            }
+        });
+
+        $('textarea.wysiwyg').tinymce({
+            // Location of TinyMCE script, optional, already loaded in page.
+            //script_url : '../js/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            script_url: '@Url.Content("~/Scripts/tiny_mce/tiny_mce.js")',
+            // General options
+            theme: "advanced",
+            plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+
+            // Theme options
+            theme_advanced_buttons1: "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+            theme_advanced_buttons2: "cut,copy,paste,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,|,forecolor,backcolor",
+            theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr",
+            theme_advanced_buttons4: "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,|,ltr,rtl,|,fullscreen",
+            theme_advanced_toolbar_location: "top",
+            theme_advanced_toolbar_align: "left",
+            theme_advanced_statusbar_location: "bottom",
+            theme_advanced_resizing: false
+        });
+    });
+</script>
+@Scripts.Render("~/bundles/jqueryval")

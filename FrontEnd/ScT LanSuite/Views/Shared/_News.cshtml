@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Models.NewsViewModel>
+
+
+    @foreach (var item in Model)
+    {
+        <div class="news">
+            <div class="newsTitle">
+                <p style="margin: 0px; margin-left: 20px;">@item.News.Title</p>
+            </div>
+            <div class="newsContent">
+                <div class="newsSpacer">
+                    @(new HtmlString(item.News.Content))
+                </div>
+            </div>
+            <div class="newsFooter">
+                <div class="newsFooterSpacer">
+                    <div class="newsCommentButtonContainer" newsid="@item.News.ID"><a href="#" class="newsCommentButton">Comments (@item.News.Comments.Count)</a></div>
+                    <div class="newsDate">@item.DateShown</div>
+                </div>
+            </div>
+            </div>
+        
+        <div class="newsComments" id="newsComment_@item.News.ID">
+                @foreach (var comment in item.Comments.OrderBy(x => x.Date))
+	            {
+                <div class="newsComment">
+                    <div class="newsCommentTitle">
+                        <div class="newsCommentDate">@comment.DateShown</div>
+                        <div class="newsCommentUserName"><b>@comment.Comment.UserName</b></div>  
+                    </div>
+                    <div class="newsCommentContent">
+                        <div class="newsCommentSpacer">
+                            <div class="newsCommentText">@comment.Comment.Content</div>
+                            <div class="newsCommentGravatar">@Html.GravatarImage(comment.Email,120)</div>
+                            
+                        </div>
+                    </div>
+                </div>
+	            }
+                @if (User.Identity.IsAuthenticated)
+                {
+                <div class="newsComment">
+                    <div class="newsCommentTitle">
+                        <div class="newsCommentUserName"><b>@User.Identity.Name</b></div>
+                    </div>
+                    <div class="newsCommentContent">
+                        <div class="newNewsCommentSpacer">
+                            @using (Html.BeginForm("AddComment", "Home", FormMethod.Post, new { id = "NewsComment_" + item.News.ID, newsId = item.News.ID }))
+                            {
+                                Models.Comments comment = new Models.Comments();
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div>
+                                    @Html.Hidden("NewsID", item.News.ID)
+                                </div>
+                                <div>
+                                    @Html.TextArea("Content")
+                                </div>
+                                <div class="spacer"></div>
+                                <div class="commentButtonContainer">
+                                    <button type="submit" class="commentButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">
+                                        <span class="ui-button-icon-primary ui-icon ui-icon-plus"></span>
+                                        <span class="ui-button-text">Comment!</span>
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+    }
+<script type="text/javascript">
+    $(function () {
+        $(".commentButton").click(function (e) {
+            e.preventDefault();
+            $.post('@Url.Action("AddComment", "Home")', $(this).parent().parent().serialize(), function (data) {
+                if (data == "Success") {
+                    location.reload();
+                }
+            });
+        });
+        $(".newsCommentButton").click(function (e) {
+            e.preventDefault();
+           
+            if ($("#newsComment_" + $(this).parent().attr("newsid")).is(":visible"))
+            {
+                $("#newsComment_" + $(this).parent().attr("newsid")).slideUp(500);
+            }
+            else {
+                $("#newsComment_" + $(this).parent().attr("newsid")).slideDown(500);
+            }
+        });
+
+        $(".commentButton").hover(
+            function () {
+                $(this).addClass("ui-state-hover");
+            },
+            function () {
+               $(this).removeClass("ui-state-hover");
+            });
+        });
+</script>

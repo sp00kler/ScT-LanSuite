@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@Styles.Render("~/Content/themes/base/css")
+@if (ViewBag.isNews)
+{
+    <div id="bodyNews">
+    <div id="Loader"></div>
+    </div>
+    <script>
+        $(function () {
+            $("#bodyNews").load('@Url.Action("GetNewsFor", "Home", new { id = ViewContext.RouteData.Values["id"] })');
+        });
+    </script>
+    <div>
+
+    </div>
+}
+else
+{
+    <div id="bodyContent">
+        @(new HtmlString(ViewBag.Content))
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+}
