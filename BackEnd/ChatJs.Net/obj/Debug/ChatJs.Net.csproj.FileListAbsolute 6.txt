@@ -1,0 +1,58 @@
+C:\Projetos\ChatJs\ChatJs.Net\bin\Debug\ChatJs.Net.dll
+C:\Projetos\ChatJs\ChatJs.Net\bin\Debug\ChatJs.Net.pdb
+C:\Projetos\ChatJs\ChatJs.Net\bin\Debug\System.Web.Http.dll
+C:\Projetos\ChatJs\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.dll
+C:\Projetos\ChatJs\ChatJs.Net\bin\Debug\System.Web.Http.xml
+C:\Projetos\ChatJs\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.xml
+C:\Projetos\ChatJs\ChatJs.Net\obj\Debug\ChatJs.Net.dll
+C:\Projetos\ChatJs\ChatJs.Net\obj\Debug\ChatJs.Net.pdb
+C:\Projetos\ChatJs\ChatJs.Net\obj\Debug\ChatJs.Net.csprojResolveAssemblyReference.cache
+D:\Projetos\Git\chatjs\ChatJs.Net\bin\Debug\ChatJs.Net.dll
+D:\Projetos\Git\chatjs\ChatJs.Net\bin\Debug\ChatJs.Net.pdb
+D:\Projetos\Git\chatjs\ChatJs.Net\bin\Debug\System.Web.Http.dll
+D:\Projetos\Git\chatjs\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.dll
+D:\Projetos\Git\chatjs\ChatJs.Net\bin\Debug\System.Web.Http.xml
+D:\Projetos\Git\chatjs\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.xml
+D:\Projetos\Git\chatjs\ChatJs.Net\obj\Debug\ChatJs.Net.csprojResolveAssemblyReference.cache
+D:\Projetos\Git\chatjs\ChatJs.Net\obj\Debug\ChatJs.Net.dll
+D:\Projetos\Git\chatjs\ChatJs.Net\obj\Debug\ChatJs.Net.pdb
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\bin\Debug\ChatJs.Net.dll
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\bin\Debug\ChatJs.Net.pdb
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\bin\Debug\System.Web.Http.dll
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\bin\Debug\System.Web.Http.xml
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\obj\Debug\ChatJs.Net.csprojResolveAssemblyReference.cache
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\obj\Debug\ChatJs.Net.dll
+C:\Users\Heil\Desktop\chatjs-chatjs-main\ChatJs.Net\obj\Debug\ChatJs.Net.pdb
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\ChatJs.Net.dll
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\ChatJs.Net.pdb
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\System.Web.Http.dll
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\System.Web.Http.xml
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\obj\Debug\ChatJs.Net.csprojResolveAssemblyReference.cache
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\obj\Debug\ChatJs.Net.dll
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\obj\Debug\ChatJs.Net.pdb
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\ChatJs.Net.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\ChatJs.Net.pdb
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\System.Web.Http.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\System.Web.Http.xml
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\obj\Debug\ChatJs.Net.csprojResolveAssemblyReference.cache
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\obj\Debug\ChatJs.Net.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\ChatJs.Net\obj\Debug\ChatJs.Net.pdb
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Debug\ChatJs.Net.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Debug\ChatJs.Net.pdb
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Debug\System.Web.Http.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Debug\System.Web.Http.xml
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\obj\Debug\ChatJs.Net.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\obj\Debug\ChatJs.Net.pdb
