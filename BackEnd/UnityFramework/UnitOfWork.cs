@@ -16,8 +16,6 @@ namespace UnityFramework
     public class UnitOfWork : IDisposable
     {
         ApplicationDbContext context = new ApplicationDbContext();
-
-
         #region RepositoryClasses
         private GenericRepository<Clan> ClanRepository;
         private GenericRepository<ApplicationUser> UserRepository;
@@ -196,7 +194,5 @@ namespace UnityFramework
         }
 
         #endregion
-
-
     }
 }

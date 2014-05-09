@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace Models
 {
@@ -20,6 +21,7 @@ namespace Models
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ContentRequired")]
         [Display(Name = "Content", ResourceType = typeof(Resources.Lang))]
         [MaxLength(4000)]
+        [AllowHtml]
         public string Content { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "DateRequired")]

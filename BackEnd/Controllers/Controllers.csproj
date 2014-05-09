@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="AccountController.cs" />
     <Compile Include="CmsController.cs" />
+    <Compile Include="Helpers\AjaxOnly.cs" />
     <Compile Include="Helpers\ChatHelper.cs" />
     <Compile Include="Helpers\ChatHub.cs" />
     <Compile Include="Helpers\CultureHelper.cs" />

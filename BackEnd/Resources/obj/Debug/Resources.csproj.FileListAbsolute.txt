@@ -5,3 +5,10 @@ C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Res
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Resources\obj\Debug\Resources.csproj.GenerateResource.Cache
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Resources\obj\Debug\Resources.dll
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT LanSuite\BackEnd\Resources\obj\Debug\Resources.pdb
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Resources\bin\Debug\Resources.dll
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Resources\bin\Debug\Resources.pdb
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Resources\obj\Debug\Resources.csprojResolveAssemblyReference.cache
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Resources\obj\Debug\Resources.Lang.resources
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Resources\obj\Debug\Resources.csproj.GenerateResource.Cache
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Resources\obj\Debug\Resources.dll
+C:\Users\Jonas\OneDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\Resources\obj\Debug\Resources.pdb

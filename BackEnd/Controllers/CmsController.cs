@@ -99,6 +99,7 @@ namespace ScT_LanSuite.Controllers
         /// Loads Create Partial
         /// </summary>
         /// <returns>Create partial</returns>
+        [RestrictToAjax]
         public ActionResult Create()
         {
             return PartialView("_Edit", new Page { isNew = true ,News = new List<News>() });
@@ -109,6 +110,7 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="id">Page ID</param>
         /// <returns>Edit Partial</returns>
+                [RestrictToAjax]
         public async Task<ActionResult> Edit(string id)
         {
             var page = await uow.pageRepository.FindAsync(x => x.ID == id);
@@ -120,7 +122,7 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="page">Page Object</param>
         /// <returns>Updated Page Object</returns>
-        [ValidateInput(false)]
+                        [RestrictToAjax]
         public ActionResult AddNews(Page page)
         {
             if (page.News == null)
@@ -145,6 +147,7 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="id">identifier of page</param>
         /// <returns>partial with all the news in page.</returns>
+                        [RestrictToAjax]
         public async Task<ActionResult> News(string id)
         {
             var page = await uow.pageRepository.FindAsync(x => x.ID == id);
@@ -156,6 +159,7 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="id">id of page</param>
         /// <returns>Details partial</returns>
+                        [RestrictToAjax]
         public async Task<ActionResult> Details(string id)
         {
             var page = await uow.pageRepository.FindAsync(x => x.ID == id);
@@ -167,6 +171,7 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="id">id of page</param>
         /// <returns>Delete partial</returns>
+                        [RestrictToAjax]
         public async Task<ActionResult> Delete(string id)
         {
             Page page = await uow.pageRepository.FindAsync(x => x.ID == id);            
@@ -209,7 +214,7 @@ namespace ScT_LanSuite.Controllers
         /// <returns>List of pages in view</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
+        [RestrictToAjax]
         public async Task<String> CreateOrUpdate(Page page)
         {
             try 
@@ -238,23 +243,40 @@ namespace ScT_LanSuite.Controllers
                 }
                 else
                 {
+                    var news = page.News;
+                    var myPage = await uow.pageRepository.FindAsync(x => x.ID == page.ID);
                     if (page.News != null)
                     {
-                        foreach (var item in page.News)
+                        for (int i = 0; i < myPage.News.Count; i++)
                         {
-                            item.PageID = page.ID;
-                            if (item.Date == t)
-                            {
-                                item.Date = DateTime.UtcNow;
-                                await uow.newsRepository.AddAsync(item);
-                            }
-                            else
-                            {
-                                await uow.newsRepository.UpdateAsync(item);
-                            }
+                            myPage.News[i].Title = news[i].Title;
+                            myPage.News[i].Content = news[i].Content;
                         }
+                        for (int i = myPage.News.Count; i < news.Count; i++)
+                        {
+                            news[i].PageID = myPage.ID;
+                            news[i].Date = DateTime.UtcNow;
+                            myPage.News.Add(news[i]);
+                        }
+                        //foreach (var item in page.News)
+                        //{
+                        //    if (item.PageID == null)
+                        //    {
+                        //        item.PageID = page.ID;
+                        //    }
+
+                        //    if (item.Date == t)
+                        //    {
+                        //        item.Date = DateTime.UtcNow;
+                        //        await uow.newsRepository.AddAsync(item);
+                        //    }
+                        //    else
+                        //    {
+                        //        await uow.newsRepository.UpdateAsync(item);
+                        //    }
+                        //}
                     }
-                    await uow.pageRepository.UpdateAsync(page);
+                    await uow.pageRepository.UpdateAsync(myPage);
                 }
                 return "Success";
             }
@@ -271,6 +293,7 @@ namespace ScT_LanSuite.Controllers
         /// <returns>Success or Error</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [RestrictToAjax]
         public async Task<string> ChangeActiveState(string pageID)
         {
             try
