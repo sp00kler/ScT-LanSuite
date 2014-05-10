@@ -22,6 +22,7 @@ namespace ScT_LanSuite.Controllers
             return View(editionList.OrderByDescending(x => x.Place));
         }
 
+        [RestrictToAjax]
         public ActionResult Create()
         {
             var e = new Edition();
@@ -30,6 +31,7 @@ namespace ScT_LanSuite.Controllers
             return PartialView("_Edit", e);
         }
 
+        [RestrictToAjax]
         public async Task<ActionResult> Edit(string id)
         {
             var edition = await uow.editionRepository.FindAsync(x => x.ID == id);
@@ -38,7 +40,7 @@ namespace ScT_LanSuite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
+        [RestrictToAjax]
         public async Task<String> CreateOrUpdate(Edition edition)
         {
             //edition.Seating.Edition = edition;
@@ -65,7 +67,7 @@ namespace ScT_LanSuite.Controllers
                 return "Error";
             }
         }
-
+        [RestrictToAjax]
         public async Task<ActionResult> Delete(string id)
         {
             Edition edition = await uow.editionRepository.FindAsync(x => x.ID == id);
@@ -93,6 +95,7 @@ namespace ScT_LanSuite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [RestrictToAjax]
         public async Task<string> ChangeActiveState(string editionID)
         {
             try
@@ -126,6 +129,7 @@ namespace ScT_LanSuite.Controllers
             }
         }
 
+        [RestrictToAjax]
         public async Task<ActionResult> ReloadEditionTable()
         {
             var editionList = await uow.editionRepository.GetAllAsync();

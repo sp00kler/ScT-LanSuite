@@ -10,6 +10,7 @@ namespace ScT_LanSuite
         {
             ConfigureAuth(app);
             ConfigureChat(app);
+            ConfigureRequester(app);
         }
     }
 }

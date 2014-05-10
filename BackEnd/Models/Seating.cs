@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Models
 {
@@ -13,6 +14,7 @@ namespace Models
         [Required]
         public string ID { get; set; }
 
+        [AllowHtml]
         public string Content { get; set; }
 
         [Required]
