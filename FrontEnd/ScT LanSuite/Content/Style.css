@@ -595,7 +595,13 @@ p {
             display:inline-block;
     }
 .lanBlock {
-    background-color:green;
+   
+    width:20px;
+    height:20px;
+
+}
+.lanBlockEx {
+       
     width:20px;
     height:20px;
 

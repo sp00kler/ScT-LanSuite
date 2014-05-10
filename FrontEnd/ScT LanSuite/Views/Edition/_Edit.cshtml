@@ -98,6 +98,7 @@
                         //Make every clone image unique.
                         var counts = [0];
                         var colors = ["rgb(128, 0, 0)", "rgb(0, 128, 0)", "rgb(0, 0, 128)"];
+                        $(".lanBlock").css("background-color", colors[0]);
                         $(".drag").draggable({
                             helper: "clone",
                             grid: [20, 20],
@@ -125,13 +126,14 @@
                                     $("#seatingContainer .lanBlockContainer").addClass("lanBlockCont");
                                     $("#seatingContainer .lanBlockContainer").addClass("block-" + counts[0]);
                                     $("#seatingContainer .resize").addClass("size-" + counts[0]);
+                                    $("#seatingContainer .resize").addClass("lanBlockEx");
 
                                     //Remove the current class (ui-draggable and dragImg)
                                     $("#seatingContainer .item-" + counts[0]).removeClass("drag ui-draggable ui-draggable-dragging");
                                     $("#seatingContainer .table-" + counts[0]).removeClass("lanTableContainer");
                                     $("#seatingContainer .block-" + counts[0]).removeClass("lanBlockContainer");
                                     $("#seatingContainer .size-" + counts[0]).removeClass("resize");
-                                    //$("#seatingContainer .size-" + counts[0]).removeClass("lanBlock");
+                                    $("#seatingContainer .size-" + counts[0]).removeClass("lanBlock");
 
                                     $(".item-" + counts[0]).dblclick(function () {
                                         $(this).remove();
@@ -173,11 +175,17 @@
                             make_draggable($(this));
                             if ($(this).hasClass("lanBlockCont")) {
                                 var divMain = $("." + $(this).attr('class').split(' ')[0] + " > div");
+
+                                divMain.html("");
                                 divMain.resizable({
                                     handles: "all", autoHide: true, grid: 20,
                                     stop: function () {
                                         saveSeatingTable();
                                     }
+                                });
+                                $(this).dblclick(function () {
+                                    $(this).remove();
+                                    saveSeatingTable();
                                 });
                             }
 
@@ -189,6 +197,9 @@
                                     $(this).remove();
                                     saveSeatingTable();
                                 });
+                                //tableMain.html("");
+                                $("." + tableMain.attr('class').split(' ')[1] + " > div").remove();
+                                $(this).children("div").remove();
                                 tableMain.resizable({
                                     handles: "all", autoHide: true, grid: 20, alsoResize: childTables,
                                     stop: function () {
