@@ -13,25 +13,27 @@ namespace Models
         public string ID { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "UserNameRequired")]
-        [Display(Name="UserName", ResourceType = typeof(Resources.Lang))]
+        [Display(Name = "UserName", ResourceType = typeof(Resources.Lang))]
         [MaxLength(100)]
         public string UserName { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "ContentRequired")]
-        [Display(Name = "Content", ResourceType=typeof(Resources.Lang))]
+        [Display(Name = "Content", ResourceType = typeof(Resources.Lang))]
         [MaxLength(4000)]
         public string Content { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Lang), ErrorMessageResourceName = "DateRequired")]
-        [Display(Name = "Date", ResourceType=typeof(Resources.Lang))]
+        [Display(Name = "Date", ResourceType = typeof(Resources.Lang))]
         public DateTime Date { get; set; }
 
+                [Required]
         public string NewsID { get; set; }
 
+        [Required]
         [ForeignKey("NewsID")]
         public virtual News News { get; set; }
 
-        public Comments() 
+        public Comments()
         {
             this.ID = Guid.NewGuid().ToString();
         }

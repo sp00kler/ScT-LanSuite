@@ -38,7 +38,7 @@ namespace Models
         [Required]
         [ForeignKey("PageID")]
         public virtual Page Page { get; set; }
-
+        
         public virtual IList<Comments> Comments { get; set; }
 
         public News() 

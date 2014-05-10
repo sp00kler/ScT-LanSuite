@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Models;
 using System.Threading.Tasks;
+using System.Data.Entity.Validation;
 
 namespace ScT_LanSuite.Controllers
 {
@@ -102,7 +103,7 @@ namespace ScT_LanSuite.Controllers
         [RestrictToAjax]
         public ActionResult Create()
         {
-            return PartialView("_Edit", new Page { isNew = true ,News = new List<News>() });
+            return PartialView("_Edit", new Page { isNew = true, News = new List<News>() });
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="id">Page ID</param>
         /// <returns>Edit Partial</returns>
-                [RestrictToAjax]
+        [RestrictToAjax]
         public async Task<ActionResult> Edit(string id)
         {
             var page = await uow.pageRepository.FindAsync(x => x.ID == id);
@@ -122,7 +123,7 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="page">Page Object</param>
         /// <returns>Updated Page Object</returns>
-                        [RestrictToAjax]
+        [RestrictToAjax]
         public ActionResult AddNews(Page page)
         {
             if (page.News == null)
@@ -134,7 +135,7 @@ namespace ScT_LanSuite.Controllers
             if (!String.IsNullOrEmpty(page.ID))
             {
                 news.PageID = page.ID;
-               // news.Page = page;
+                // news.Page = page;
             }
             page.News.Add(news);
 
@@ -147,7 +148,7 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="id">identifier of page</param>
         /// <returns>partial with all the news in page.</returns>
-                        [RestrictToAjax]
+        [RestrictToAjax]
         public async Task<ActionResult> News(string id)
         {
             var page = await uow.pageRepository.FindAsync(x => x.ID == id);
@@ -159,7 +160,7 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="id">id of page</param>
         /// <returns>Details partial</returns>
-                        [RestrictToAjax]
+        [RestrictToAjax]
         public async Task<ActionResult> Details(string id)
         {
             var page = await uow.pageRepository.FindAsync(x => x.ID == id);
@@ -171,10 +172,10 @@ namespace ScT_LanSuite.Controllers
         /// </summary>
         /// <param name="id">id of page</param>
         /// <returns>Delete partial</returns>
-                        [RestrictToAjax]
+        [RestrictToAjax]
         public async Task<ActionResult> Delete(string id)
         {
-            Page page = await uow.pageRepository.FindAsync(x => x.ID == id);            
+            Page page = await uow.pageRepository.FindAsync(x => x.ID == id);
             return PartialView("_Delete", page);
         }
 
@@ -190,6 +191,21 @@ namespace ScT_LanSuite.Controllers
             try
             {
                 page = await uow.pageRepository.FindAsync(x => x.ID == page.ID);
+                var newsList = new List<News>();
+                var commentsList = new List<Comments>();
+                newsList.AddRange(page.News);
+
+                foreach (var news in newsList)
+                {
+                    commentsList.AddRange(news.Comments);
+                    foreach (var comment in commentsList)
+                    {
+                        await uow.commentsRepository.RemoveAsync(comment);
+                    }
+                    await uow.newsRepository.RemoveAsync(news);
+                    commentsList.Clear();
+                }
+
                 await uow.pageRepository.RemoveAsync(page);
                 var pages = await uow.pageRepository.GetAllAsync();
                 int i = 1;
@@ -201,7 +217,21 @@ namespace ScT_LanSuite.Controllers
                 }
                 return "Success";
             }
-            catch
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                return "Error";
+            }
+            catch (Exception e)
             {
                 return "Error";
             }
@@ -217,7 +247,7 @@ namespace ScT_LanSuite.Controllers
         [RestrictToAjax]
         public async Task<String> CreateOrUpdate(Page page)
         {
-            try 
+            try
             {
                 DateTime t = new DateTime();
                 DateTime.TryParse("1/01/0001 0:00:00", out t);
@@ -258,31 +288,14 @@ namespace ScT_LanSuite.Controllers
                             news[i].Date = DateTime.UtcNow;
                             myPage.News.Add(news[i]);
                         }
-                        //foreach (var item in page.News)
-                        //{
-                        //    if (item.PageID == null)
-                        //    {
-                        //        item.PageID = page.ID;
-                        //    }
-
-                        //    if (item.Date == t)
-                        //    {
-                        //        item.Date = DateTime.UtcNow;
-                        //        await uow.newsRepository.AddAsync(item);
-                        //    }
-                        //    else
-                        //    {
-                        //        await uow.newsRepository.UpdateAsync(item);
-                        //    }
-                        //}
                     }
                     await uow.pageRepository.UpdateAsync(myPage);
                 }
                 return "Success";
             }
-            catch
+            catch (Exception e)
             {
-                return "Error";
+                return "Error" + e.InnerException.Message;
             }
         }
 
@@ -303,7 +316,7 @@ namespace ScT_LanSuite.Controllers
                 await uow.pageRepository.UpdateAsync(page);
                 return "Success";
             }
-            catch 
+            catch
             {
                 return "Error";
             }

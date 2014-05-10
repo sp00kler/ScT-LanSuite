@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Models;
 using System.Threading.Tasks;
 using Dal;
+using System.Data.Entity.Validation;
 
 namespace ScT_LanSuite.Controllers
 {
@@ -230,12 +231,29 @@ namespace ScT_LanSuite.Controllers
         {
             try
             {
+                var news = await uow.newsRepository.FindAsync(x => x.ID == Comment.NewsID);
                 Comment.UserName = User.Identity.Name;
                 Comment.Date = DateTime.UtcNow;
-                await uow.commentsRepository.AddAsync(Comment);
+                Comment.News = news;
+                news.Comments.Add(Comment);
+                await uow.pageRepository.UpdateAsync(news.Page);
                 return "Success";
             }
-            catch
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                return "Error";
+            }
+            catch (Exception e)
             {
                 return "Error";
             }

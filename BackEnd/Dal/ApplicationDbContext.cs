@@ -47,7 +47,15 @@ namespace Dal
         public DbSet<ClanInvitation> ClanInvitation { get; set; }
         public DbSet<Seating> Seating { get; set; }
         public DbSet<ClanSeating> ClanSeating { get; set; }
-
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Page>().HasMany(x => x.News).WithRequired(x => x.Page).WillCascadeOnDelete();
+            modelBuilder.Entity<News>().HasMany(x => x.Comments).WithRequired(x => x.News).WillCascadeOnDelete();
+           
+            modelBuilder.Entity<Comments>().HasRequired(x => x.News).WithMany(x => x.Comments).WillCascadeOnDelete();
+            modelBuilder.Entity<News>().HasRequired(x => x.Page).WithMany(x => x.News).WillCascadeOnDelete();
+         }
     }
 
     public class IdentityManager
