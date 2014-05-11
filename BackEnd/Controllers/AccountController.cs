@@ -85,10 +85,12 @@ namespace ScT_LanSuite.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, FullName = model.FullName, ConfirmationToken = CreateConfirmationToken() };
+                string confirmationToken = CreateConfirmationToken();
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, FullName = model.FullName, ConfirmationToken = confirmationToken };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    SendEmailConfirmation(model.Email, model.UserName, confirmationToken);
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -97,7 +99,6 @@ namespace ScT_LanSuite.Controllers
                     AddErrors(result);
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
