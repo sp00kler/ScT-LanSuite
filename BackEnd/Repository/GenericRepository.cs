@@ -29,7 +29,8 @@ namespace Repository
 
         public async Task<int> RemoveAsync(TEntity t)
         {
-            _dbContext.Entry(t).State = EntityState.Deleted;
+           // _dbContext.Entry(t).State = EntityState.Deleted;
+            _dbContext.Set<TEntity>().Remove(t);
             return await _dbContext.SaveChangesAsync();
         }
 
