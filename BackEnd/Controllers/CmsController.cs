@@ -195,16 +195,16 @@ namespace ScT_LanSuite.Controllers
                 var commentsList = new List<Comments>();
                 newsList.AddRange(page.News);
 
-                foreach (var news in newsList)
-                {
-                    commentsList.AddRange(news.Comments);
-                    foreach (var comment in commentsList)
-                    {
-                        await uow.commentsRepository.RemoveAsync(comment);
-                    }
-                    await uow.newsRepository.RemoveAsync(news);
-                    commentsList.Clear();
-                }
+                //foreach (var news in newsList)
+                //{
+                //    commentsList.AddRange(news.Comments);
+                //    foreach (var comment in commentsList)
+                //    {
+                //        await uow.commentsRepository.RemoveAsync(comment);
+                //    }
+                //    await uow.newsRepository.RemoveAsync(news);
+                //    commentsList.Clear();
+                //}
 
                 await uow.pageRepository.RemoveAsync(page);
                 var pages = await uow.pageRepository.GetAllAsync();

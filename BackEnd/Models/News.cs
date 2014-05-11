@@ -32,10 +32,10 @@ namespace Models
         [Display(Name = "Place", ResourceType = typeof(Resources.Lang))]
         public int Place { get; set; }
         
-        [Required]
+      //  [Required]
         public string PageID { get; set; }
 
-        [Required]
+     //   [Required]
         [ForeignKey("PageID")]
         public virtual Page Page { get; set; }
         
