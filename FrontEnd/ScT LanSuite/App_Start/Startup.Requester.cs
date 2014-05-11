@@ -15,13 +15,14 @@ namespace ScT_LanSuite
         {
             var _tokenSource = new CancellationTokenSource();
             var _token = _tokenSource.Token;
+            var url = "http://sct-lansuite.apphb.com";
             Task t = Task.Run(() =>
             {
                 while (!_token.IsCancellationRequested)
                 {
                     try
                     {
-                        new HttpClient().GetAsync(GetBaseUrl()).Wait(20000, _token);
+                        new HttpClient().GetAsync(url).Wait(20000, _token);
                     }
                     catch (Exception)
                     {
@@ -29,6 +30,7 @@ namespace ScT_LanSuite
                     Thread.Sleep(TimeSpan.FromSeconds(300));
                 }
             }, _token);
+            
         }
 
         private string GetBaseUrl()
