@@ -68,6 +68,18 @@ namespace ScT_LanSuite.Controllers
             return View(model);
         }
 
+
+        [AllowAnonymous]
+        public async Task<ActionResult> RegisterConfirmation(string Id)
+        {
+            var user = await uow.userRepository.FindAsync(x => x.ConfirmationToken == Id);
+            user.EmailConfirmed = true;
+            await uow.userRepository.UpdateAsync(user);
+            return RedirectToAction("index", "home");
+        }
+
+
+
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -303,7 +315,7 @@ namespace ScT_LanSuite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            
+
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
@@ -361,7 +373,7 @@ namespace ScT_LanSuite.Controllers
 
         public ActionResult Clans()
         {
-            var user = Task.Run(async() => await uow.userRepository.FindAsync(x => x.UserName == User.Identity.Name)).Result;
+            var user = Task.Run(async () => await uow.userRepository.FindAsync(x => x.UserName == User.Identity.Name)).Result;
             var clanInviteVm = new ClanInvitationsViewModel();
             if (user.ClanInvitations.Count != 0)
             {
@@ -375,9 +387,9 @@ namespace ScT_LanSuite.Controllers
                     clanInviteVm.isInClan = true;
                 }
                 if (user.Id == user.Clan.UserID)
-	            {
+                {
                     clanInviteVm.isLeader = true;
-	            }
+                }
             }
             return PartialView("_Clans", clanInviteVm);
         }
@@ -407,9 +419,9 @@ namespace ScT_LanSuite.Controllers
             var users = await uow.userRepository.FindAllAsync(x => x.UserName.Contains(term));
             var userStrings = new List<string>();
             foreach (var item in users)
-	        {
+            {
                 userStrings.Add(item.UserName);
-	        }
+            }
             return Json(userStrings.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
@@ -459,13 +471,13 @@ namespace ScT_LanSuite.Controllers
                 await uow.clanInvitationRepository.RemoveAsync(clanInvitation);
                 return RedirectToAction("Manage", new { Message = ManageMessageId.ClanInviteDeclined });
             }
-            catch 
+            catch
             {
                 return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
             }
         }
 
-        public async Task<ActionResult> KickClanMember(string clanId ,string userId)
+        public async Task<ActionResult> KickClanMember(string clanId, string userId)
         {
             try
             {
@@ -499,7 +511,7 @@ namespace ScT_LanSuite.Controllers
 
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);        
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
@@ -550,7 +562,8 @@ namespace ScT_LanSuite.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

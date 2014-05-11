@@ -16,3 +16,13 @@ D:\Projetos\Git\chatjs\ChatJs.Net\bin\Release\System.Net.Http.Formatting.xml
 D:\Projetos\Git\chatjs\ChatJs.Net\obj\Release\ChatJs.Net.csprojResolveAssemblyReference.cache
 D:\Projetos\Git\chatjs\ChatJs.Net\obj\Release\ChatJs.Net.dll
 D:\Projetos\Git\chatjs\ChatJs.Net\obj\Release\ChatJs.Net.pdb
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\bin\Release\ChatJs.Net.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\bin\Release\ChatJs.Net.pdb
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\bin\Release\System.Web.Http.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\bin\Release\Newtonsoft.Json.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\bin\Release\System.Web.Http.xml
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\obj\Release\ChatJs.Net.csprojResolveAssemblyReference.cache
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\obj\Release\ChatJs.Net.dll
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-LanSuite\BackEnd\ChatJs.Net\obj\Release\ChatJs.Net.pdb
