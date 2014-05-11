@@ -49,7 +49,7 @@ namespace Dal
         public DbSet<ClanSeating> ClanSeating { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           // base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Comments>().HasRequired(x => x.News).WithMany(x => x.Comments).WillCascadeOnDelete();
             modelBuilder.Entity<News>().HasRequired(x => x.Page).WithMany(x => x.News).WillCascadeOnDelete();
