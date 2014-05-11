@@ -23,5 +23,6 @@ C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\Cha
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Release\Newtonsoft.Json.dll
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Release\System.Web.Http.xml
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\obj\Release\ChatJs.Net.csprojResolveAssemblyReference.cache
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\obj\Release\ChatJs.Net.dll
 C:\Users\Heil\SkyDrive\Documents\Visual Studio Projects\ScT-Lansuite\BackEnd\ChatJs.Net\obj\Release\ChatJs.Net.pdb
