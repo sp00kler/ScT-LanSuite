@@ -26,10 +26,10 @@ namespace Models
         [Display(Name = "Date", ResourceType = typeof(Resources.Lang))]
         public DateTime Date { get; set; }
 
-      //  [Required]
+        [Required]
         public string NewsID { get; set; }
 
-      //  [Required]
+        [Required]
         [ForeignKey("NewsID")]
         public virtual News News { get; set; }
 

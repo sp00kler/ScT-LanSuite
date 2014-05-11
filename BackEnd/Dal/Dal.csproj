@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201405111247154_Cascade3.Designer.cs">
       <DependentUpon>201405111247154_Cascade3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405111415146_required-fields.cs" />
+    <Compile Include="Migrations\201405111415146_required-fields.Designer.cs">
+      <DependentUpon>201405111415146_required-fields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405111247154_Cascade3.resx">
       <DependentUpon>201405111247154_Cascade3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405111415146_required-fields.resx">
+      <DependentUpon>201405111415146_required-fields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
