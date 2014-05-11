@@ -10,12 +10,27 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Models;
 using Dal;
+using Postal;
 
 namespace ScT_LanSuite.Controllers
 {
     [Authorize]
     public class AccountController : ScTController
     {
+        private string CreateConfirmationToken()
+        {
+            return Guid.NewGuid().ToString();
+        }
+
+        private void SendEmailConfirmation(string to, string username, string confirmationToken)
+        {
+            dynamic email = new Email("RegEmail");
+            email.To = to;
+            email.UserName = username;
+            email.ConfirmationToken = confirmationToken;
+            email.Send();
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -70,7 +85,7 @@ namespace ScT_LanSuite.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, FullName = model.FullName };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, FullName = model.FullName, ConfirmationToken = CreateConfirmationToken() };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

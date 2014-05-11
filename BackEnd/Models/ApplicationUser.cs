@@ -10,6 +10,7 @@ namespace Models
     public class ApplicationUser : IdentityUser
     {
         public string FullName { get; set; }
+        public string ConfirmationToken { get; set; }
         public string ClanID { get; set; }
         [ForeignKey("ClanID")]
         public virtual Clan Clan { get; set; }
