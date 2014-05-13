@@ -12,7 +12,16 @@ namespace ScT_LanSuite
         {
             if (!filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                throw new InvalidOperationException("This action is only available via ajax");
+                HttpSessionStateBase session = filterContext.HttpContext.Session;
+                Controller controller = filterContext.Controller as Controller;
+
+                if (controller != null)
+                {
+                        controller.HttpContext.Response.Redirect("./index");
+                }
+
+                base.OnActionExecuting(filterContext);
+                //throw new InvalidOperationException("This action is only available via ajax");
             }
         }
     }
