@@ -383,7 +383,12 @@ namespace ScT_LanSuite.Controllers
                 var user = Db.Users.First(u => u.UserName == User.Identity.Name);
                 // Update the user data:
                 user.FullName = model.FullName;
-                user.Email = model.Email;
+                if (user.Email != model.Email)
+                {
+                    user.EmailConfirmed = false;
+                    user.Email = model.Email;
+                }
+                
                 Db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 await Db.SaveChangesAsync();
                 return RedirectToAction("Manage", new { Message = ManageMessageId.UpdateProfileSuccess });
