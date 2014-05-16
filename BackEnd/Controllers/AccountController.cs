@@ -37,12 +37,14 @@ namespace ScT_LanSuite.Controllers
                 string confirmationToken = CreateConfirmationToken();
                 string uid = User.Identity.GetUserId();
                 var user = await uow.userRepository.FindAsync(x => x.Id == uid);
+                user.ConfirmationToken = confirmationToken;
 
                 if (!user.EmailConfirmed)
                     SendEmailConfirmation(user.Email, user.UserName, confirmationToken);
                 else
                     return "Error";
-                
+
+                await uow.userRepository.UpdateAsync(user);
                 return "Success";
             }
             catch
@@ -361,10 +363,11 @@ namespace ScT_LanSuite.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult Edit(string id, ManageMessageId? Message = null)
+        public async Task<ActionResult> Edit(string id, ManageMessageId? Message = null)
         {
             var Db = new ApplicationDbContext();
-            var user = Db.Users.First(u => u.UserName == User.Identity.Name);
+            var user = await uow.userRepository.FindAsync(u => u.UserName == User.Identity.Name);
+
             var model = new EditUserViewModel(user);
             ViewBag.MessageId = Message;
             return PartialView("_Edit", model);

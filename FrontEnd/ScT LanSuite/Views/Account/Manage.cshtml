@@ -32,7 +32,7 @@
             </div>
             <div id="manageLeft">
                 <section id="editPersonalInfo">
-                    @Html.Action("Edit", "Account", new { id = User.Identity.Name })
+                    @*@Html.Action("Edit", "Account", new { id = User.Identity.Name })*@
                 </section>
             </div>
             <section id="externalLogins">
@@ -54,6 +54,7 @@
 <script>
     $(function () {
         $("#tabs").tabs();
+        $("#editPersonalInfo").load('@Url.Action("Edit", "Account", new { id = User.Identity.Name })');
     });
 </script>
 
