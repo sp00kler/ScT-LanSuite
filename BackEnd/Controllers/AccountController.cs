@@ -30,6 +30,26 @@ namespace ScT_LanSuite.Controllers
             email.ConfirmationToken = confirmationToken;
             email.Send();
         }
+        public async Task<string> ResendEmailConfirmation()
+        {
+            try
+            {
+                string confirmationToken = CreateConfirmationToken();
+                string uid = User.Identity.GetUserId();
+                var user = await uow.userRepository.FindAsync(x => x.Id == uid);
+
+                if (!user.EmailConfirmed)
+                    SendEmailConfirmation(user.Email, user.UserName, confirmationToken);
+                else
+                    return "Error";
+                
+                return "Success";
+            }
+            catch
+            {
+                return "Error";
+            }            
+        }
 
         //
         // GET: /Account/Login

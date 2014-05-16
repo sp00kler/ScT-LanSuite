@@ -101,6 +101,8 @@ namespace Models
             this.UserName = user.UserName;
             this.FullName = user.FullName;
             this.Email = user.Email;
+            this.isEmailConfirmed = user.EmailConfirmed;
+            
         }
 
         [Required]
@@ -113,6 +115,9 @@ namespace Models
 
         [Required]
         public string Email { get; set; }
+
+        [Display(Name = "Confirmed email")]
+        public bool isEmailConfirmed { get; set; }
     }
 
     public class SelectUserRolesViewModel
