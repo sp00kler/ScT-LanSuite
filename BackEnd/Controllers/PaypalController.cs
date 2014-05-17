@@ -94,7 +94,7 @@ namespace ScT_LanSuite.Controllers
             return View(paypalvm);
         }
 
-        async Task<string> GetPayPalResponse(Dictionary<string, string> formVals)
+        public async Task<string> GetPayPalResponse(Dictionary<string, string> formVals)
         {
 
             // Parse the variables
