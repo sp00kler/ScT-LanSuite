@@ -58,7 +58,7 @@ namespace ScT_LanSuite.Controllers
                     // take the information returned and store this into a subscription table
                     // this is where you would update your database with the details of the tran
                     registration.Paid = true;
-                    await uow.registrationRepository.UpdateAsync(registration);
+                   // await uow.registrationRepository.UpdateAsync(registration);
                     return View();
 
                 }
