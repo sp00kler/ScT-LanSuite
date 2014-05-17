@@ -806,6 +806,7 @@
     <Content Include="Views\Paypal\ValidateCommand.cshtml" />
     <Content Include="Views\Paypal\PayLan.cshtml" />
     <Content Include="Views\Paypal\RedirectFromPaypal.cshtml" />
+    <Content Include="Views\Paypal\NotifyFromPaypal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
