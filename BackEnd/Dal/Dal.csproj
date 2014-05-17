@@ -115,6 +115,10 @@
     <Compile Include="Migrations\201405111813076_email-confirmationtoken.Designer.cs">
       <DependentUpon>201405111813076_email-confirmationtoken.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405171532124_Settings.cs" />
+    <Compile Include="Migrations\201405171532124_Settings.Designer.cs">
+      <DependentUpon>201405171532124_Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405111813076_email-confirmationtoken.resx">
       <DependentUpon>201405111813076_email-confirmationtoken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405171532124_Settings.resx">
+      <DependentUpon>201405171532124_Settings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

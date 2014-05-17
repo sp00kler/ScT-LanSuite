@@ -16,6 +16,38 @@ namespace Dal.Migrations
         protected override void Seed(ApplicationDbContext context)
         {
             this.AddUserAndRoles();
+            this.AddSettings();
+        }
+
+        bool AddSettings() 
+        {
+            bool success = false;
+
+            var sManager = new SettingsManager();
+
+            success = sManager.insertSetting("PayPal_Business", "tech-facilitator@sp00kler.be");
+            if (!success == true) return success;
+
+            success = sManager.insertSetting("PayPal_CancelReturn", "http://sct-lansuite.apphb.com/PayPal/CancelFromPaypal");
+            if (!success == true) return success;
+
+            success = sManager.insertSetting("PayPal_Return", "http://sct-lansuite.apphb.com/PayPal/RedirectFromPaypal");
+            if (!success == true) return success;
+
+            success = sManager.insertSetting("PayPal_ActionUrl", "https://www.sandbox.paypal.com/cgi-bin/webscr");
+            if (!success == true) return success;
+
+            success = sManager.insertSetting("PayPal_NotifyUrl", "http://sct-lansuite.apphb.com/PayPal/NotifyFromPaypal");
+            if (!success == true) return success;
+
+            success = sManager.insertSetting("PayPal_CurrencyCode", "EUR");
+            if (!success == true) return success;
+
+            success = sManager.insertSetting("Registration_Price", "1");
+            if (!success == true) return success;
+          
+
+            return success;
         }
         bool AddUserAndRoles()
         {

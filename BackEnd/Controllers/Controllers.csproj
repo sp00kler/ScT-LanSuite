@@ -146,7 +146,9 @@
     <Compile Include="Helpers\ChatHelper.cs" />
     <Compile Include="Helpers\ChatHub.cs" />
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\SettingsManager.cs" />
     <Compile Include="HomeController.cs" />
+    <Compile Include="PaypalController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EditionController.cs" />
     <Compile Include="ScTController.cs" />

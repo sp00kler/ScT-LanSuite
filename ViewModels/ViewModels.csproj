@@ -92,6 +92,7 @@
     <Compile Include="ClanInvitationsViewModel.cs" />
     <Compile Include="NewsCommentViewModel.cs" />
     <Compile Include="NewsViewModel.cs" />
+    <Compile Include="PaypalViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleViewModels.cs" />
   </ItemGroup>

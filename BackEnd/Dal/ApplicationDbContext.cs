@@ -47,6 +47,8 @@ namespace Dal
         public DbSet<ClanInvitation> ClanInvitation { get; set; }
         public DbSet<Seating> Seating { get; set; }
         public DbSet<ClanSeating> ClanSeating { get; set; }
+
+        public DbSet<Settings> Settings { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -54,6 +56,24 @@ namespace Dal
             modelBuilder.Entity<Comments>().HasRequired(x => x.News).WithMany(x => x.Comments).WillCascadeOnDelete();
             modelBuilder.Entity<News>().HasRequired(x => x.Page).WithMany(x => x.News).WillCascadeOnDelete();
          }
+    }
+
+
+    public class SettingsManager
+    {
+        ApplicationDbContext _db = new ApplicationDbContext();
+
+        public bool insertSetting(string key, string value)
+        {
+            Settings s = new Settings { Key = key, Value = value };
+            var t = _db.Settings.Add(s);
+            _db.SaveChanges();
+            if (t != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
     public class IdentityManager

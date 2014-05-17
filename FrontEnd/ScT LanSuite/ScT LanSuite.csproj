@@ -745,7 +745,9 @@
     <Content Include="ToDo.txt" />
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\_ViewStart.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -801,6 +803,9 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Emails\ChngPasswordEmail.cshtml" />
     <Content Include="Views\Emails\RegEmail.cshtml" />
+    <Content Include="Views\Paypal\ValidateCommand.cshtml" />
+    <Content Include="Views\Paypal\PayLan.cshtml" />
+    <Content Include="Views\Paypal\RedirectFromPaypal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -841,6 +846,10 @@
     <ProjectReference Include="..\..\BackEnd\UnityFramework\UnityFramework.csproj">
       <Project>{f04e954a-6299-4462-82ec-d9064334b017}</Project>
       <Name>UnityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ViewModels\ViewModels.csproj">
+      <Project>{b9456a69-fcd8-474f-ae02-e39c8a4150c4}</Project>
+      <Name>ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

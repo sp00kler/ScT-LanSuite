@@ -17,6 +17,7 @@ namespace ScT_LanSuite.Controllers
     public class ScTController : Controller
     {
         public UnitOfWork uow = new UnitOfWork();
+        public SettingsManager sm = new SettingsManager();
         public RoleManager<ApplicationRole> _roleManager = new RoleManager<ApplicationRole>(new RoleStore<ApplicationRole>(new ApplicationDbContext()));
         //public UserManager<ApplicationUser> _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         public UserManager<ApplicationUser> _userManager = new UserManager<ApplicationUser>(new myUserStore());

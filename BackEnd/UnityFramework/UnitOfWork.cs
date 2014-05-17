@@ -31,8 +31,19 @@ namespace UnityFramework
         private GenericRepository<ClanInvitation> ClanInvitationRepository;
         private GenericRepository<ClanSeating> ClanSeatingRepository;
         private GenericRepository<Seating> SeatingRepository;
+        private GenericRepository<Settings> SettingsRepository;
 
 
+
+        public GenericRepository<Settings> settingsRepository
+        {
+            get
+            {
+                if (this.SettingsRepository == null)
+                    this.SettingsRepository = new GenericRepository<Settings>(context);
+                return SettingsRepository;
+            }
+        }
         public GenericRepository<Seating> seatingRepository
         {
             get
