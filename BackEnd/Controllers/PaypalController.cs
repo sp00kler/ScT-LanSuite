@@ -46,19 +46,19 @@ namespace ScT_LanSuite.Controllers
                 string transactionID = Request["txn_id"];
                 string sAmountPaid = Request["mc_gross"];
                 string userId = Request["custom"];
-               // var editionId = (await uow.editionRepository.FindAsync(x => x.isActivated)).ID;
-               // var registration = await uow.registrationRepository.FindAsync(x => x.UserID == userId && x.EditionID == editionId);
+                var editionId = (await uow.editionRepository.FindAsync(x => x.isActivated)).ID;
+                var registration = await uow.registrationRepository.FindAsync(x => x.UserID == userId && x.EditionID == editionId);
 
                 //validate the order
                 Decimal amountPaid = 0;
                 Decimal.TryParse(sAmountPaid, out amountPaid);
-
-                if (sAmountPaid == "1")
+                var AmountPaid = await sm.getSettingAsync("Registration_Price");
+                if (sAmountPaid == AmountPaid)
                 {
                     // take the information returned and store this into a subscription table
                     // this is where you would update your database with the details of the tran
-                    //registration.Paid = true;
-                   // await uow.registrationRepository.UpdateAsync(registration);
+                    registration.Paid = true;
+                    await uow.registrationRepository.UpdateAsync(registration);
                     return View();
 
                 }
