@@ -35,7 +35,7 @@ namespace ScT_LanSuite.Controllers
         public async Task<ActionResult> NotifyFromPaypal()
         {
             // Receive IPN request from PayPal and parse all the variables returned
-            var formVals = new Dictionary<String, String>();
+            var formVals = new Dictionary<string, string>();
             formVals.Add("cmd", "_notify-validate");
 
             // if you want to use the PayPal sandbox change this from false to true
