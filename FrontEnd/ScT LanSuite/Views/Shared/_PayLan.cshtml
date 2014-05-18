@@ -1,0 +1,24 @@
+﻿@using (Html.BeginForm("PayLan", "Home", FormMethod.Post, new { id = "PayForm" }))
+{
+    <h2>Select Payment Method</h2>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    Paypal:
+                </td>
+                <td>
+                    @Html.RadioButton("PaymentMethod", "Paypal")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Bank Transfer:
+                </td>
+                <td>
+                    @Html.RadioButton("PaymentMethod", "Bank")
+                </td>
+            </tr>
+        </table>
+    </div>
+}

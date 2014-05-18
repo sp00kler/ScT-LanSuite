@@ -808,6 +808,7 @@
     <Content Include="Views\Paypal\RedirectFromPaypal.cshtml" />
     <Content Include="Views\Paypal\NotifyFromPaypal.cshtml" />
     <Content Include="Views\Shared\_ParticipateLan.cshtml" />
+    <Content Include="Views\Shared\_PayLan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

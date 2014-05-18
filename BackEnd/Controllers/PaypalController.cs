@@ -85,11 +85,7 @@ namespace ScT_LanSuite.Controllers
             var userId = (await uow.userRepository.FindAsync(x => x.UserName == User.Identity.Name)).Id;
             var editionId = (await uow.editionRepository.FindAsync(x => x.isActivated)).ID;
 
-            var registration = new Registration();
-            registration.Paid = false;
-            registration.UserID = userId;
-            registration.EditionID = editionId;
-            await uow.registrationRepository.AddAsync(registration);
+
             var paypalvm = new PayPalViewModel(business, cancelReturn, Return, actionUrl, notifyUrl, currencyCode, totalPrice, product, userId);
 
             return View(paypalvm);

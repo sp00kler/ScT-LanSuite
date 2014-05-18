@@ -20,7 +20,7 @@
                 </div>
             }
         </div>
-        @if (!Model.isParticipating)
+        @if (!Model.isParticipating && User.Identity.IsAuthenticated)
         {
             <div>
                 <button class="Participate ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="showParticipateLan">
@@ -30,7 +30,7 @@
             </div>
             <br />
         }
-        @if (!Model.hasPaid && Model.isParticipating)
+        @if (!Model.hasPaid && Model.isParticipating && User.Identity.IsAuthenticated)
         {
             <div>
                 <button class="PayLan ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="showPayLan">
@@ -56,6 +56,9 @@
     <div id="Loader"></div>
 </div>
 <div id="paypal-dialog">
+    <div id="Loader"></div>
+</div>
+<div id="paylan-dialog">
     <div id="Loader"></div>
 </div>
 
@@ -91,7 +94,7 @@
             }
         });
 
-        $("#participate-dialog").dialog({
+        $("#paylan-dialog").dialog({
             autoOpen: false,
             height: 500,
             width: 900,
@@ -99,11 +102,12 @@
             title: "Select payment method",
             buttons: {
                 "Select": function () {
-                    $.post('@Url.Action("ParticipateLan", "Home")', $("#ParticipateForm").serialize(), function (data) {
+                    $.post('@Url.Action("PayLan", "Home")', $("#PayForm").serialize(), function (data) {
                         if (data == "Paypal") {
+                            $("#paylan-dialog").dialog("close");
                             $("#paypal-dialog").load('@Url.Action("PayLan","Paypal")');
                             $("#paypal-dialog").dialog("open");
-                            $(this).dialog("close");
+                            
                         }
                         if (data == "Bank") {
 
@@ -116,6 +120,36 @@
             }
         });
 
+        $("#participate-dialog").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 900,
+            modal: true,
+            title: "Select payment method",
+            buttons: {
+                "Select": function () {
+                    $.post('@Url.Action("ParticipateLan", "Home")', $("#ParticipateForm").serialize(), function (data) {
+                        if (data == "Paypal") {
+                            $("#participate-dialog").dialog("close");
+                            $("#paypal-dialog").load('@Url.Action("PayLan","Paypal")');
+                            $("#paypal-dialog").dialog("open");
+                        }
+                        if (data == "Bank") {
+
+                        }
+                    });
+                },
+                "Close": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+       
+        $("#showPayLan").click(function () {
+            $("#paylan-dialog").load('@Url.Action("PayLan", "Home")');
+            $("#paylan-dialog").dialog("open");
+        });
+
         $("#showParticipateLan").click(function () {
             $("#participate-dialog").load('@Url.Action("ParticipateLan", "Home")');
             $("#participate-dialog").dialog("open");
@@ -124,7 +158,6 @@
         $("#showSeating").click(function () {
             $("#seating-dialog").load('@Url.Action("GetSeating","Home")?id=@Model.Edition.ID');
             $("#seating-dialog").dialog("open");
-
         });
 
     });

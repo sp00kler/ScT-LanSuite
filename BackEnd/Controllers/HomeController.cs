@@ -136,12 +136,28 @@ namespace ScT_LanSuite.Controllers
             return PartialView("_ParticipateLan");
         }
         [HttpPost]
-        public string ParticipateLan(string PaymentMethod)
+        public async Task<string> ParticipateLan(string PaymentMethod)
         {
-            
+            var user = await uow.userRepository.FindAsync(x => x.UserName == User.Identity.Name);
+            var edition = await uow.editionRepository.FindAsync(x => x.isActivated);
+            var registration = new Registration();
+            registration.Paid = false;
+            registration.UserID = user.Id;
+            registration.EditionID = edition.ID;
+            await uow.registrationRepository.AddAsync(registration);
             return PaymentMethod;
         }
 
+        [HttpGet]
+        public ActionResult PayLan()
+        {
+            return PartialView("_PayLan");
+        }
+        [HttpPost]
+        public string PayLan(string PaymentMethod)
+        {
+            return PaymentMethod;
+        }
         public ActionResult SetCulture(string culture)
         {
             // Validate input

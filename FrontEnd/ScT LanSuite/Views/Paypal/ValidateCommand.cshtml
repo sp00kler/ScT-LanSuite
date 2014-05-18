@@ -18,10 +18,12 @@
         </h3>
     </p>
 </div>
-@Scripts.Render("~/bundles/jquery")
-<script type="text/javascript" language="javascript">
-    $(this.document).ready(function () {
-        var form = $("form");
-        form.submit();
-    });
-</script>
+@section scripts {
+    <script type="text/javascript" language="javascript">
+        $(this.document).ready(function () {
+            var form = $("#hiddenform");
+            form.submit();
+        });
+    </script>
+}
+

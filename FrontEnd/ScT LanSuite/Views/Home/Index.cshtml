@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@Styles.Render("~/Content/themes/base/css")
+
 @if (ViewBag.isNews)
 {
     <div id="bodyNews">
@@ -23,6 +23,3 @@ else
     </div>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryui")
-}
