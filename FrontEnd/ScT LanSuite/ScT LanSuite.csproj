@@ -804,9 +804,10 @@
     <Content Include="Views\Emails\ChngPasswordEmail.cshtml" />
     <Content Include="Views\Emails\RegEmail.cshtml" />
     <Content Include="Views\Paypal\ValidateCommand.cshtml" />
-    <Content Include="Views\Paypal\PayLan.cshtml" />
+    <Content Include="Views\Paypal\_PayLan.cshtml" />
     <Content Include="Views\Paypal\RedirectFromPaypal.cshtml" />
     <Content Include="Views\Paypal\NotifyFromPaypal.cshtml" />
+    <Content Include="Views\Shared\_ParticipateLan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

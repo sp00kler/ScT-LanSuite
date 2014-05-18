@@ -20,7 +20,7 @@ namespace ScT_LanSuite.Controllers
 
             ViewBag.Price = await sm.getSettingAsync("Registration_Price") ;
 
-            return View();
+            return PartialView("_PayLan");
         }
         public async Task<ActionResult> RedirectFromPaypal()
         {
@@ -46,6 +46,7 @@ namespace ScT_LanSuite.Controllers
                 string transactionID = Request["txn_id"];
                 string sAmountPaid = Request["mc_gross"];
                 string userId = Request["custom"];
+                string Status = Request["payment_status"];
                 var editionId = (await uow.editionRepository.FindAsync(x => x.isActivated)).ID;
                 var registration = await uow.registrationRepository.FindAsync(x => x.UserID == userId && x.EditionID == editionId);
 
@@ -53,7 +54,7 @@ namespace ScT_LanSuite.Controllers
                 Decimal amountPaid = 0;
                 Decimal.TryParse(sAmountPaid, out amountPaid);
                 var AmountPaid = await sm.getSettingAsync("Registration_Price");
-                if (sAmountPaid == AmountPaid)
+                if (sAmountPaid == AmountPaid && Status == "Completed")
                 {
                     // take the information returned and store this into a subscription table
                     // this is where you would update your database with the details of the tran

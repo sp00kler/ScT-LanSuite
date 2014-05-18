@@ -1,29 +1,61 @@
-﻿@model Models.Edition
+﻿@model ViewModels.StatsViewModel
 <div class="window">
     <div class="windowTitle">
         Upcomming
     </div>
     <div class="windowContent">
         <div class="windowPadding">
-                Title: @Model.Title
-            <br />
-                Seats: @Model.Seats
+            @if (@Model.Edition != null)
+            {
+                <div>
+                    Title: @Model.Edition.Title
+                    <br />
+                    Seats: @Model.Edition.Seats
+                </div>
+            }
+            else
+            {
+                <div>
+                    No Edition
+                </div>
+            }
         </div>
+        @if (!Model.isParticipating)
+        {
+            <div>
+                <button class="Participate ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="showParticipateLan">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-check"></span>
+                    <span class="ui-button-text">Participate</span>
+                </button>
+            </div>
+            <br />
+        }
+        @if (!Model.hasPaid && Model.isParticipating)
+        {
+            <div>
+                <button class="PayLan ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="showPayLan">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-check"></span>
+                    <span class="ui-button-text">Pay</span>
+                </button>
+            </div>
+            <br />
+        }
+
         <div>
             <button class="Seating ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="showSeating">
                 <span class="ui-button-icon-primary ui-icon ui-icon-info"></span>
                 <span class="ui-button-text">Show Seating</span>
             </button>
         </div>
-        <div>
-            <button class="Register ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" id="showSeating">
-                <span class="ui-button-icon-primary ui-icon ui-icon-info"></span>
-                <span class="ui-button-check">Participate</span>
-            </button>
-        </div>
     </div>
 </div>
 <div id="seating-dialog">
+    <div id="Loader"></div>
+</div>
+<div id="participate-dialog">
+    <div id="Loader"></div>
+</div>
+<div id="paypal-dialog">
     <div id="Loader"></div>
 </div>
 
@@ -42,10 +74,55 @@
                 }
             }
         });
+        $("#paypal-dialog").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 900,
+            modal: true,
+            title: "Confirm Paypal Payment",
+            buttons: {
+                "Checkout": function () {
+                    $("#paypalCheckout").click();
+                    $(this).dialog("close");
+                },
+                "Close": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
 
+        $("#participate-dialog").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 900,
+            modal: true,
+            title: "Select payment method",
+            buttons: {
+                "Select": function () {
+                    $.post('@Url.Action("ParticipateLan", "Home")', $("#ParticipateForm").serialize(), function (data) {
+                        if (data == "Paypal") {
+                            $("#paypal-dialog").load('@Url.Action("PayLan","Paypal")');
+                            $("#paypal-dialog").dialog("open");
+                            $(this).dialog("close");
+                        }
+                        if (data == "Bank") {
+
+                        }
+                    });
+                },
+                "Close": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#showParticipateLan").click(function () {
+            $("#participate-dialog").load('@Url.Action("ParticipateLan", "Home")');
+            $("#participate-dialog").dialog("open");
+        });
 
         $("#showSeating").click(function () {
-            $("#seating-dialog").load('@Url.Action("GetSeating","Home")?id=@Model.ID');
+            $("#seating-dialog").load('@Url.Action("GetSeating","Home")?id=@Model.Edition.ID');
             $("#seating-dialog").dialog("open");
 
         });

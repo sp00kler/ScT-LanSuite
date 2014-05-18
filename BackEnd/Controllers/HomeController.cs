@@ -7,6 +7,7 @@ using Models;
 using System.Threading.Tasks;
 using Dal;
 using System.Data.Entity.Validation;
+using ViewModels;
 
 namespace ScT_LanSuite.Controllers
 {
@@ -110,13 +111,35 @@ namespace ScT_LanSuite.Controllers
 
         public async Task<ActionResult> LoadEdition()
         {
-            var edition = await uow.editionRepository.FindAsync(x => x.isActivated);
-            return PartialView("_Stats", edition);
+            
+            var svm = (from e in await uow.editionRepository.GetAllAsync()
+                                 join r in await uow.registrationRepository.GetAllAsync() on e.ID equals r.EditionID
+                                 where e.isActivated
+                                 select new StatsViewModel { Edition = (e != null ? e : new Edition()), hasPaid = (r != null && r.Paid ? true : false), isParticipating = (r != null ? true : false) }).SingleOrDefault();
+
+            if (svm == null)
+            {
+                var edition = await uow.editionRepository.FindAsync(x => x.isActivated);
+                svm = new StatsViewModel { Edition = edition, hasPaid = false, isParticipating = false };
+            }
+
+            return PartialView("_Stats", svm);
         }
         public async Task<ActionResult> GetSeating(string id)
         {
             var seating = await uow.seatingRepository.FindAsync(x => x.ID == id);
             return PartialView("_Seating", seating);
+        }
+        [HttpGet]
+        public ActionResult ParticipateLan()
+        {
+            return PartialView("_ParticipateLan");
+        }
+        [HttpPost]
+        public string ParticipateLan(string PaymentMethod)
+        {
+            
+            return PaymentMethod;
         }
 
         public ActionResult SetCulture(string culture)
